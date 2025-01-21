@@ -31,14 +31,19 @@ public class UNIverse {
         while (!isRunComplete) {
             String response = wait.getResponse();
 
-            if (response.equals("bye")) { // session terminated once user says "bye"
+            if (response.contains("bye")) { // session terminated once user says "bye"
                 exit.bye();
                 isRunComplete = true;
-            } else if (response.equals("list")) { // prints checklist to screen if user says "list"
+            } else if (response.contains("list")) { // prints checklist to screen if user says "list"
                 System.out.println("Cosmic Chore Checklist:");
                 list.printChecklist();
+            } else if (response.startsWith("check")) { // mark chore as done
+                list.checkAsDone(response);
+            } else if (response.startsWith("uncheck")) { // mark chore as not done
+                list.uncheckAsDone(response);
             } else { // adds the chore to the checklist
-                list.addChore(response);
+                Chore chore = new Chore(response);
+                list.addChore(chore);
             }
         }
     }
