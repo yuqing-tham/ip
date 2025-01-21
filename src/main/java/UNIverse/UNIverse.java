@@ -10,6 +10,7 @@ public class UNIverse {
     private Enter enter;
     private WaitForResponse wait;
     private Exit exit;
+    private Checklist list;
 
     // constructor for UNIverse class
     // every new "session" with the chatbot will create new instances of the action classes
@@ -17,6 +18,7 @@ public class UNIverse {
         this.enter = new Enter();
         this.wait = new WaitForResponse();
         this.exit = new Exit();
+        this.list = new Checklist();
     }
 
     // main method to run the chatbot
@@ -32,14 +34,13 @@ public class UNIverse {
             if (response.equals("bye")) { // session terminated once user says "bye"
                 exit.bye();
                 isRunComplete = true;
-            } else if (response.equals("list")) {
-                System.out.println("Cosmic Chore Checklist: "); //temp placeholder for task list logic
-            } else {
-                System.out.println("Sorry, this word doesn't exist in the UNIverse library yet. " +
-                        "Check back again in a million light years :)");
+            } else if (response.equals("list")) { // prints checklist to screen if user says "list"
+                System.out.println("Cosmic Chore Checklist:");
+                list.printChecklist();
+            } else { // adds the chore to the checklist
+                list.addChore(response);
             }
         }
-
     }
     public static void main(String[] args) {
         new UNIverse().run();
