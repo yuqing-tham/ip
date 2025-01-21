@@ -16,7 +16,11 @@ public class Checklist {
     // method to add a chore to the Checklist
     public void addChore(Chore chore) {
         checklist.add(chore);
-        System.out.println(chore.getChoreDescription() + " added to Checklist!");
+        System.out.println(chore.toString() + " added to Checklist!");
+
+        // new message to reflect number of chores in the checklist
+        int choreCount = checklist.size();
+        System.out.println("You now have " + choreCount + " chore(s) in the checklist.");
     }
 
     // method to print checklist when requested by user

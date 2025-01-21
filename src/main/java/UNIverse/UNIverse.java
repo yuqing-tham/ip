@@ -30,6 +30,7 @@ public class UNIverse {
         // while user has yet to input "bye", UNIverse will wait for their response
         while (!isRunComplete) {
             String response = wait.getResponse();
+            SplitResponse r = new SplitResponse(response);
 
             if (response.contains("bye")) { // session terminated once user says "bye"
                 exit.bye();
@@ -41,6 +42,18 @@ public class UNIverse {
                 list.checkAsDone(response);
             } else if (response.startsWith("uncheck")) { // mark chore as not done
                 list.uncheckAsDone(response);
+            } else if (response.startsWith("todo")) {
+                String description = r.getDescription();
+                ToDo todo = new ToDo(description);
+                list.addChore(todo);
+            } else if (response.startsWith("deadline")) {
+                String[] temp = r.getDeadlineDetails();
+                Deadline deadline = new Deadline(temp[0].trim(), temp[1].trim());
+                list.addChore(deadline);
+            } else if (response.startsWith("event")) {
+                String[] temp = r.getEventDetails();
+                Event event = new Event(temp[0].trim(), temp[1].trim(), temp[2].trim());
+                list.addChore(event);
             } else { // adds the chore to the checklist
                 Chore chore = new Chore(response);
                 list.addChore(chore);
