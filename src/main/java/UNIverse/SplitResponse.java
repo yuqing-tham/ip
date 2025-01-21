@@ -21,15 +21,15 @@ public class SplitResponse {
     // for the deadline chore
     public String[] getDeadlineDetails() {
         String temp = this.getDescription();
-        String[] parts = temp.split("/by", 2);
+        String[] parts = temp.split("by", 2);
         return parts;
     }
 
     // for the event chore
     public String[] getEventDetails() {
         String temp = this.getDescription();
-        String[] mid = temp.split("/from", 2);
-        String[] furtherSplit = mid[1].split("/to");
+        String[] mid = temp.split("from", 2);
+        String[] furtherSplit = mid[1].split("to");
         String[] parts = new String[]{ mid[0], furtherSplit[0], furtherSplit[1] };
         return parts;
     }

@@ -15,6 +15,6 @@ public class Event extends Chore {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + start + " to:" + end + ")";
+        return "[E]" + super.toString() + " (from: " + start + " to: " + end + ")";
     }
 }
