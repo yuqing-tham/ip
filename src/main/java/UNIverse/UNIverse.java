@@ -29,34 +29,43 @@ public class UNIverse {
 
         // while user has yet to input "bye", UNIverse will wait for their response
         while (!isRunComplete) {
-            String response = wait.getResponse();
-            SplitResponse r = new SplitResponse(response);
+            try {
+                String response = wait.getResponse();
 
-            if (response.contains("bye")) { // session terminated once user says "bye"
-                exit.bye();
-                isRunComplete = true;
-            } else if (response.contains("list")) { // prints checklist to screen if user says "list"
-                System.out.println("Cosmic Chore Checklist:");
-                list.printChecklist();
-            } else if (response.startsWith("check")) { // mark chore as done
-                list.checkAsDone(response);
-            } else if (response.startsWith("uncheck")) { // mark chore as not done
-                list.uncheckAsDone(response);
-            } else if (response.startsWith("todo")) {
-                String description = r.getDescription();
-                ToDo todo = new ToDo(description);
-                list.addChore(todo);
-            } else if (response.startsWith("deadline")) {
-                String[] temp = r.getDeadlineDetails();
-                Deadline deadline = new Deadline(temp[0].trim(), temp[1].trim());
-                list.addChore(deadline);
-            } else if (response.startsWith("event")) {
-                String[] temp = r.getEventDetails();
-                Event event = new Event(temp[0].trim(), temp[1].trim(), temp[2].trim());
-                list.addChore(event);
-            } else { // adds the chore to the checklist
-                Chore chore = new Chore(response);
-                list.addChore(chore);
+                // checks if response is a valid response with the correct details required
+                CheckResponse c = new CheckResponse(response);
+                c.handleError();
+
+                // if valid response, pass on the response to be split
+                SplitResponse r = new SplitResponse(response);
+
+                if (response.contains("bye")) { // session terminated once user says "bye"
+                    exit.bye();
+                    isRunComplete = true;
+                } else if (response.contains("list")) { // prints checklist to screen if user says "list"
+                    System.out.println("Cosmic Chore Checklist:");
+                    list.printChecklist();
+                } else if (response.startsWith("check")) { // mark chore as done
+                    list.checkAsDone(response);
+                } else if (response.startsWith("uncheck")) { // mark chore as not done
+                    list.uncheckAsDone(response);
+                } else if (response.startsWith("todo")) { // deals with a todo chore
+                    String description = r.getDescription();
+                    ToDo todo = new ToDo(description);
+                    list.addChore(todo);
+                } else if (response.startsWith("deadline")) { // deals with a deadline chore
+                    String[] temp = r.getDeadlineDetails();
+                    Deadline deadline = new Deadline(temp[0].trim(), temp[1].trim());
+                    list.addChore(deadline);
+                } else if (response.startsWith("event")) { // deals with an event chore
+                    String[] temp = r.getEventDetails();
+                    Event event = new Event(temp[0].trim(), temp[1].trim(), temp[2].trim());
+                    list.addChore(event);
+                } else { // command not recognised, so an invalid response exception is thrown
+                    throw new InvalidResponseException();
+                }
+            } catch (UNIverseException e) { // catches all the exceptions defined in the exception classes
+                System.out.println(e.getMessage() + "\n"); // prints out error message
             }
         }
     }
