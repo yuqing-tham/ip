@@ -61,6 +61,8 @@ public class UNIverse {
                     String[] temp = r.getEventDetails();
                     Event event = new Event(temp[0].trim(), temp[1].trim(), temp[2].trim());
                     list.addChore(event);
+                } else if (response.startsWith("remove")) { // deals with removing
+                    list.removeChore(response);
                 } else { // command not recognised, so an invalid response exception is thrown
                     throw new InvalidResponseException();
                 }

@@ -17,7 +17,22 @@ public class Checklist {
     public void addChore(Chore chore) {
         checklist.add(chore);
         System.out.println(chore.toString() + " added to Checklist!");
+        this.printCount();
+    }
 
+    // method to remove a chore from the Checklist
+    public void removeChore(String response) {
+        String[] parts = response.split(" ");
+        int choreNumber = Integer.parseInt(parts[1]);
+        int index = choreNumber - 1;
+        Chore chore = checklist.get(index);
+        checklist.remove(index);
+        System.out.println("Got it, this chore is removed: \n" + chore.toString());
+        this.printCount();
+    }
+
+    // method to print choreCount
+    public void printCount() {
         // new message to reflect number of chores in the checklist
         int choreCount = checklist.size();
         System.out.println("You now have " + choreCount + " chore(s) in the checklist.");
