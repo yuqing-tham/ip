@@ -33,7 +33,7 @@ public class UNIverse {
                 String response = wait.getResponse();
 
                 // checks if response is a valid response with the correct details required
-                CheckResponse c = new CheckResponse(response);
+                CheckResponse c = new CheckResponse(response, list);
                 c.handleError();
 
                 // if valid response, pass on the response to be split

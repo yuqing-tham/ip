@@ -13,6 +13,10 @@ public class Checklist {
         checklist = new ArrayList<>(100);
     }
 
+    public int getSize() {
+        return checklist.size();
+    }
+
     // method to add a chore to the Checklist
     public void addChore(Chore chore) {
         checklist.add(chore);
