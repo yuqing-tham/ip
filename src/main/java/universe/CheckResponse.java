@@ -22,32 +22,32 @@ public class CheckResponse {
             String command = r[0].trim(); // take first word
 
             switch (command) {
-                case "todo":
-                case "deadline":
-                case "event":
-                    if (r.length < 2) {
-                        throw new MissingDescriptionException();
-                    } else if (command.equals("deadline") && !(response.contains("by"))) {
-                        throw new MissingTimeException();
-                    } else if (command.equals("event")) {
-                        if (!(response.contains("from")) || !(response.contains("to"))) {
-                            throw new MissingStartAndEndException();
-                        }
+            case "todo":
+            case "deadline":
+            case "event":
+                if (r.length < 2) {
+                    throw new MissingDescriptionException();
+                } else if (command.equals("deadline") && !(response.contains("by"))) {
+                    throw new MissingTimeException();
+                } else if (command.equals("event")) {
+                    if (!(response.contains("from")) || !(response.contains("to"))) {
+                        throw new MissingStartAndEndException();
                     }
-                    break;
+                }
+                break;
 
-                case "check":
-                case "uncheck":
-                case "remove":
-                    if (r.length < 2) {
-                        throw new MissingIndexException();
-                    } else {
-                        int choreIndex = Integer.parseInt(r[1]); // only applicable to commands check, uncheck and remove
-                        if (choreIndex > list.getSize()) {
-                            throw new MissingListItemException();
-                        }
+            case "check":
+            case "uncheck":
+            case "remove":
+                if (r.length < 2) {
+                    throw new MissingIndexException();
+                } else {
+                    int choreIndex = Integer.parseInt(r[1]); // only applicable to commands check, uncheck and remove
+                    if (choreIndex > list.getSize()) {
+                        throw new MissingListItemException();
                     }
-                    break;
+                }
+                break;
             }
         }
     }
