@@ -17,4 +17,9 @@ public class Event extends Chore {
     public String toString() {
         return "[E]" + super.toString() + " (from: " + start + " to: " + end + ")";
     }
+
+    @Override
+    public String toFileString() {
+        return "E" + super.toFileString() + " | " + start + "-" + end;
+    }
 }

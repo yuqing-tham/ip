@@ -15,4 +15,9 @@ public class Deadline extends Chore {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + date + ")";
     }
+
+    @Override
+    public String toFileString() {
+        return "D" + super.toFileString() + " | " + date;
+    }
 }

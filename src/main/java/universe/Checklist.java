@@ -7,14 +7,14 @@ import java.util.ArrayList;
  */
 
 public class Checklist {
-    private static ArrayList<Chore> checklist;
-
-    public Checklist() {
-        checklist = new ArrayList<>(100);
-    }
+    private static ArrayList<Chore> checklist = new ArrayList<>(100);;
 
     public int getSize() {
         return checklist.size();
+    }
+
+    public static ArrayList<Chore> getChecklist() {
+        return checklist;
     }
 
     // method to add a chore to the Checklist
@@ -59,6 +59,8 @@ public class Checklist {
         int choreNumber = Integer.parseInt(parts[1]);
         Chore chore = checklist.get(choreNumber - 1);
         chore.markAsDone();
+        System.out.println("Yay " + chore.getChoreDescription() + " successfully completed!");
+        System.out.println(chore.toString() + "\n");
     }
 
     // method to isolate the integer from the response and pass on to Chore class
@@ -68,5 +70,7 @@ public class Checklist {
         int choreNumber = Integer.parseInt(parts[1]);
         Chore chore = checklist.get(choreNumber - 1);
         chore.markAsNotDone();
+        System.out.println(chore.getChoreDescription() + " marked as not done yet :(");
+        System.out.println(chore.toString() + "\n");
     }
 }

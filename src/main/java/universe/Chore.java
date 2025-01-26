@@ -17,15 +17,11 @@ public class Chore {
     // method to mark Chore as done and prints out status
     public void markAsDone() {
         isDone = true;
-        System.out.println("Yay " + choreDescription + " successfully completed!");
-        System.out.println(this.toString() + "\n");
     }
 
     // method to mark Chore as not done and prints out status
     public void markAsNotDone() {
         isDone = false;
-        System.out.println(choreDescription + " marked as not done yet :(");
-        System.out.println(this.toString() + "\n");
     }
 
     // method to return chore description
@@ -38,5 +34,11 @@ public class Chore {
     public String toString() {
         String status = isDone ? "X" : " ";
         return "[" + status + "] " + choreDescription;
+    }
+
+    // prints the details for the chore in the correct format to be put into the file
+    public String toFileString() {
+        String status = isDone ? "1" : "0";
+        return " | " + status + " | " + choreDescription;
     }
 }
