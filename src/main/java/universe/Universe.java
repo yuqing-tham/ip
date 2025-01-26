@@ -38,7 +38,7 @@ public class Universe {
             storage.readFile();
         } catch (FileNotFoundException e) {
             System.out.println("Sorry, your Checklist file cannot be found!\n");
-        } catch (IncorrectFormatException e) {
+        } catch (IncorrectFormatException | IOException e) {
             System.out.println(e.getMessage() + "\n");
         }
 

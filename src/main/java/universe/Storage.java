@@ -1,7 +1,6 @@
 package universe;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,8 +18,17 @@ public class Storage {
 
     // reads the contents of the file and splits the contents into relevant parts
     // create the corresponding checklist of chores
-    public void readFile() throws FileNotFoundException, IncorrectFormatException {
+    public void readFile() throws IOException, IncorrectFormatException {
         File f = new File(filepath);
+
+        // if the directory does not exist, create the "data" directory
+        f.getParentFile().mkdirs();
+
+        // if the file does not exist, create the file
+        if (!f.exists()) {
+            f.createNewFile();
+        }
+
         Scanner s = new Scanner(f);
 
         while (s.hasNext()) {
