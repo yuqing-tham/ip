@@ -34,4 +34,33 @@ Cosmic Chore Checklist:
 3 [E][ ] ihg track (from: 6 Feb 2025 7pm to: 9pm)
 You now have 3 chore(s) in the checklist.
 
+A chore must have a description!
+
+A chore must have a description!
+
+A chore must have a description!
+
+A deadline chore must have a date/time!
+
+An event must have a start and end time!
+
+An event must have a start and end time!
+
+Please provide a chore number!
+
+Please provide a chore number!
+
+Please provide a chore number!
+
+This chore is not in the list :(
+
+This chore is not in the list :(
+
+This chore is not in the list :(
+
+Sorry, this word doesn't exist in the Universe library yet.
+Check back again in a million light years or reenter your command.
+
+Still waiting for your response!
+
 Farewell, Universe traveller. May our paths intersect again soon!

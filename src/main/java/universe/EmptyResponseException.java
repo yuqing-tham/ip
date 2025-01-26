@@ -6,6 +6,6 @@ package universe;
  */
 public class EmptyResponseException extends UniverseException {
     public EmptyResponseException() {
-        super("Still waiting for your response!\n");
+        super("Still waiting for your response!");
     }
 }

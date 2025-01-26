@@ -6,6 +6,6 @@ package universe;
  */
 public class MissingTimeException extends UniverseException {
     public MissingTimeException() {
-        super("A deadline chore must have a date/time!\n");
+        super("A deadline chore must have a date/time!");
     }
 }

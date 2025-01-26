@@ -7,6 +7,6 @@ package universe;
 
 public class MissingListItemException extends UniverseException {
     public MissingListItemException() {
-        super("This chore is not in the list :(\n");
+        super("This chore is not in the list :(");
     }
 }
