@@ -1,5 +1,8 @@
 package universe;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  * Universe is the main class where the chatbot will run, performing actions such as
  * greeting the user, interacting with the user by responding appropriately, and
@@ -27,6 +30,19 @@ public class Universe {
         boolean isRunComplete = false; // a "toggle switch" to keep track of whether the session has ended
         enter.greet(); // Universe will greet the user for every new session
 
+        // create a new Storage instance with the default filepath
+        Storage storage = new Storage("data/chores.txt");
+
+        // attempt to read the file and check if the file exists
+        try {
+            storage.readFile();
+        } catch (FileNotFoundException e) {
+            System.out.println("Sorry, your Checklist file cannot be found!\n");
+        } catch (IncorrectFormatException e) {
+            System.out.println(e.getMessage() + "\n");
+        }
+
+        // bot then waits for users' inputs
         // while user has yet to input "bye", Universe will wait for their response
         while (!isRunComplete) {
             try {
@@ -66,8 +82,14 @@ public class Universe {
                 } else { // command not recognised, so an invalid response exception is thrown
                     throw new InvalidResponseException();
                 }
+
+                // save the chores to the corresponding file after each command
+                storage.saveChores();
+
             } catch (UniverseException e) { // catches all the exceptions defined in the exception classes
                 System.out.println(e.getMessage() + "\n"); // prints out error message
+            } catch (IOException e) {
+                System.out.println("Sorry, unable to save chores. Please try again.\n");
             }
         }
     }
