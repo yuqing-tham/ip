@@ -6,7 +6,7 @@ package universe;
  */
 public class InvalidResponseException extends UniverseException {
     public InvalidResponseException() {
-        super("Sorry, this word doesn't exist in the Universe library yet.\n" +
-                "Check back again in a million light years or reenter your command.");
+        super("Sorry, this word doesn't exist in the Universe library yet.\n"
+                + "Check back again in a million light years or reenter your command.\n");
     }
 }

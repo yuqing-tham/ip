@@ -5,7 +5,7 @@ package universe;
  */
 public class Enter {
     // the "Hi" message
-    private static final String INTRO = "Welcome to the Universe! \nWhat cosmic quest can I assist you with today?";
+    private static final String INTRO = "Welcome to the Universe! \nWhat cosmic quest can I assist you with today?\n";
     public void greet() {
         System.out.println(INTRO);
     }

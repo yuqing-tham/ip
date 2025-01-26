@@ -6,6 +6,6 @@ package universe;
  */
 public class MissingStartAndEndException extends UniverseException {
     public MissingStartAndEndException() {
-        super("An event must have a start and end time!");
+        super("An event must have a start and end time!\n");
     }
 }

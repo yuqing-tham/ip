@@ -39,7 +39,7 @@ public class Checklist {
     public void printCount() {
         // new message to reflect number of chores in the checklist
         int choreCount = checklist.size();
-        System.out.println("You now have " + choreCount + " chore(s) in the checklist.");
+        System.out.println("You now have " + choreCount + " chore(s) in the checklist.\n");
     }
 
     // method to print checklist when requested by user
@@ -49,6 +49,7 @@ public class Checklist {
             System.out.printf("%d %s%n", j, c.toString());
             j++;
         }
+        this.printCount();
     }
 
     // method to isolate the integer from the response and pass on to Chore class

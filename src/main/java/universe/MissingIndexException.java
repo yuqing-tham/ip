@@ -6,6 +6,6 @@ package universe;
  */
 public class MissingIndexException extends UniverseException {
     public MissingIndexException() {
-        super("Please provide a chore number!");
+        super("Please provide a chore number!\n");
     }
 }

@@ -6,6 +6,6 @@ package universe;
  */
 public class MissingDescriptionException extends UniverseException {
     public MissingDescriptionException() {
-        super("A chore must have a description!");
+        super("A chore must have a description!\n");
     }
 }
