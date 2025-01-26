@@ -1,10 +1,10 @@
-package UNIverse;
+package universe;
 
 /**
- * MissingDescriptionException class inherits from UNIverseException.
+ * MissingDescriptionException class inherits from UniverseException.
  * It passes on the error message that the chore is lacking a description.
  */
-public class MissingDescriptionException extends UNIverseException {
+public class MissingDescriptionException extends UniverseException {
     public MissingDescriptionException() {
         super("A chore must have a description!");
     }

@@ -1,20 +1,20 @@
-package UNIverse;
+package universe;
 
 /**
- * UNIverse is the main class where the chatbot will run, performing actions such as
+ * Universe is the main class where the chatbot will run, performing actions such as
  * greeting the user, interacting with the user by responding appropriately, and
  * ending the session when the user says "bye".
  */
-public class UNIverse {
+public class Universe {
     // fields to store the actions
     private Enter enter;
     private WaitForResponse wait;
     private Exit exit;
     private Checklist list;
 
-    // constructor for UNIverse class
+    // constructor for Universe class
     // every new "session" with the chatbot will create new instances of the action classes
-    public UNIverse() {
+    public Universe() {
         this.enter = new Enter();
         this.wait = new WaitForResponse();
         this.exit = new Exit();
@@ -22,12 +22,12 @@ public class UNIverse {
     }
 
     // main method to run the chatbot
-    // includes UNIverse's responses to different scenarios
+    // includes Universe's responses to different scenarios
     public void run() {
         boolean isRunComplete = false; // a "toggle switch" to keep track of whether the session has ended
-        enter.greet(); // UNIverse will greet the user for every new session
+        enter.greet(); // Universe will greet the user for every new session
 
-        // while user has yet to input "bye", UNIverse will wait for their response
+        // while user has yet to input "bye", Universe will wait for their response
         while (!isRunComplete) {
             try {
                 String response = wait.getResponse();
@@ -66,12 +66,12 @@ public class UNIverse {
                 } else { // command not recognised, so an invalid response exception is thrown
                     throw new InvalidResponseException();
                 }
-            } catch (UNIverseException e) { // catches all the exceptions defined in the exception classes
+            } catch (UniverseException e) { // catches all the exceptions defined in the exception classes
                 System.out.println(e.getMessage() + "\n"); // prints out error message
             }
         }
     }
     public static void main(String[] args) {
-        new UNIverse().run();
+        new Universe().run();
     }
 }

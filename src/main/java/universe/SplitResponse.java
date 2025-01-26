@@ -1,4 +1,4 @@
-package UNIverse;
+package universe;
 
 /**
  * SplitResponse class is chiefly in charge of splitting the user's response into useful parts:

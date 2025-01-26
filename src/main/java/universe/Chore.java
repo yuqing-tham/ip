@@ -1,4 +1,4 @@
-package UNIverse;
+package universe;
 
 /**
  * Chore class deals with the chore description and marks itself as done or not done.

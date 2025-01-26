@@ -1,4 +1,4 @@
-package UNIverse;
+package universe;
 
 import java.util.ArrayList;
 

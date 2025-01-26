@@ -1,6 +1,4 @@
-package UNIverse;
-
-import java.util.Arrays;
+package universe;
 
 /**
  * CheckResponse class checks if a response by the user contains all the necessary details and handles errors accordingly.

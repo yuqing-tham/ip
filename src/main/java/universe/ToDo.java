@@ -1,4 +1,4 @@
-package UNIverse;
+package universe;
 
 /**
  * This class inherits from Chore and overrides the toString() method to print further details.
