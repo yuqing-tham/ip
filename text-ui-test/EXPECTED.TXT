@@ -18,6 +18,7 @@ You now have 3 chore(s) in the checklist.
 
 Yay read psych chap 1 successfully completed!
 [T][X] read psych chap 1
+
 Cosmic Chore Checklist:
 1 [T][X] read psych chap 1
 2 [D][ ] cs2103t ip week 2 (by: 24 Jan 2025)
@@ -26,6 +27,7 @@ You now have 3 chore(s) in the checklist.
 
 read psych chap 1 marked as not done yet :(
 [T][ ] read psych chap 1
+
 Cosmic Chore Checklist:
 1 [T][ ] read psych chap 1
 2 [D][ ] cs2103t ip week 2 (by: 24 Jan 2025)

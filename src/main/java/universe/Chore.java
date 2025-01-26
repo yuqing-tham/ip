@@ -18,14 +18,14 @@ public class Chore {
     public void markAsDone() {
         isDone = true;
         System.out.println("Yay " + choreDescription + " successfully completed!");
-        System.out.println(this.toString());
+        System.out.println(this.toString() + "\n");
     }
 
     // method to mark Chore as not done and prints out status
     public void markAsNotDone() {
         isDone = false;
         System.out.println(choreDescription + " marked as not done yet :(");
-        System.out.println(this.toString());
+        System.out.println(this.toString() + "\n");
     }
 
     // method to return chore description
