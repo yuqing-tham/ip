@@ -84,6 +84,8 @@ public class Universe {
                     list.addChore(event);
                 } else if (response.startsWith("remove")) { // deals with removing
                     list.removeChore(response);
+                } else if (response.startsWith("filter")) {
+                    list.filter(response);
                 } else { // command not recognised, so an invalid response exception is thrown
                     throw new InvalidResponseException();
                 }
@@ -97,7 +99,7 @@ public class Universe {
                 System.out.println("Sorry, unable to save chores. Please try again.\n");
             } catch (DateTimeParseException e) {
                 System.out.println("Sorry, something wrong with the date format. " +
-                        "Please key following 'D-MMM-YYYY' format.");
+                        "Please key following 'D-MMM-YYYY' format.\n");
             }
         }
     }

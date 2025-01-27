@@ -17,6 +17,16 @@ public class Event extends Chore {
         this.end = end;
     }
 
+    @Override
+    public boolean isChoreWithTime() {
+        return true;
+    }
+
+    @Override
+    public LocalDateTime getDateTime() {
+        return start;
+    }
+
     public String reformatStart() throws DateTimeParseException {
         return start.format(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
     }
@@ -32,6 +42,6 @@ public class Event extends Chore {
 
     @Override
     public String toFileString() {
-        return "E" + super.toFileString() + " | " + this.reformatStart() + "to" + this.reformatEnd();
+        return "E" + super.toFileString() + " | " + this.reformatStart() + " to " + this.reformatEnd();
     }
 }

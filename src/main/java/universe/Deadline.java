@@ -15,6 +15,16 @@ public class Deadline extends Chore {
         this.date = date;
     }
 
+    @Override
+    public boolean isChoreWithTime() {
+        return true;
+    }
+
+    @Override
+    public LocalDateTime getDateTime() {
+        return date;
+    }
+
     public String reformatDate() throws DateTimeParseException {
         return date.format(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
     }

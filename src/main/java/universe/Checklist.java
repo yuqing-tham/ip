@@ -1,5 +1,7 @@
 package universe;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -72,5 +74,25 @@ public class Checklist {
         chore.markAsNotDone();
         System.out.println(chore.getChoreDescription() + " marked as not done yet :(");
         System.out.println(chore.toString() + "\n");
+    }
+
+    public void filter(String response) {
+        String[] parts = response.split(" ", 2);
+        String date = parts[1].trim();
+        LocalDateTime dateToFilter = LocalDateTime.parse(date + " 00:00"
+                , DateTimeFormatter.ofPattern("d MMM yyy HH:mm"));
+
+        System.out.println("Chores on " + date + ": ");
+        boolean isFound = false;
+        for (Chore c : checklist) {
+            if (c.isChoreWithTime() && c.getDateTime().toLocalDate().equals(dateToFilter.toLocalDate())) {
+                isFound = true;
+                System.out.println(c.toString());
+            }
+        }
+
+        if (!isFound) {
+            System.out.println("No deadlines or events on this date\n");
+        }
     }
 }
