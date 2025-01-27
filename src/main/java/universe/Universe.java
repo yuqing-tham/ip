@@ -3,6 +3,7 @@ package universe;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Universe is the main class where the chatbot will run, performing actions such as
@@ -92,6 +93,9 @@ public class Universe {
                 System.out.println(e.getMessage() + "\n"); // prints out error message
             } catch (IOException e) {
                 System.out.println("Sorry, unable to save chores. Please try again.\n");
+            } catch (DateTimeParseException e) {
+                System.out.println("Sorry, something wrong with the date format. " +
+                        "Please key following 'D-MMM-YYYY' format.");
             }
         }
     }

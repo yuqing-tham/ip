@@ -4,7 +4,7 @@ What cosmic quest can I assist you with today?
 [T][ ] read psych chap 1 added to Checklist!
 You now have 1 chore(s) in the checklist.
 
-[D][ ] cs2103t ip week 2 (by: 24 Jan 2025) added to Checklist!
+[D][ ] cs2103t ip week 2 (by: 24-1-2025) added to Checklist!
 You now have 2 chore(s) in the checklist.
 
 [E][ ] ihg track (from: 6 Feb 2025 7pm to: 9pm) added to Checklist!
@@ -12,7 +12,7 @@ You now have 3 chore(s) in the checklist.
 
 Cosmic Chore Checklist:
 1 [T][ ] read psych chap 1
-2 [D][ ] cs2103t ip week 2 (by: 24 Jan 2025)
+2 [D][ ] cs2103t ip week 2 (by: 24-1-2025)
 3 [E][ ] ihg track (from: 6 Feb 2025 7pm to: 9pm)
 You now have 3 chore(s) in the checklist.
 
@@ -21,7 +21,7 @@ Yay read psych chap 1 successfully completed!
 
 Cosmic Chore Checklist:
 1 [T][X] read psych chap 1
-2 [D][ ] cs2103t ip week 2 (by: 24 Jan 2025)
+2 [D][ ] cs2103t ip week 2 (by: 24-1-2025)
 3 [E][ ] ihg track (from: 6 Feb 2025 7pm to: 9pm)
 You now have 3 chore(s) in the checklist.
 
@@ -30,7 +30,7 @@ read psych chap 1 marked as not done yet :(
 
 Cosmic Chore Checklist:
 1 [T][ ] read psych chap 1
-2 [D][ ] cs2103t ip week 2 (by: 24 Jan 2025)
+2 [D][ ] cs2103t ip week 2 (by: 24-1-2025)
 3 [E][ ] ihg track (from: 6 Feb 2025 7pm to: 9pm)
 You now have 3 chore(s) in the checklist.
 

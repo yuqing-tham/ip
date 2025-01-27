@@ -29,7 +29,7 @@ public class SplitResponse {
         return parts;
     }
 
-    public LocalDate getDate() {
+    public LocalDate getDate() throws DateTimeParseException {
         String date = this.getDeadlineDetails()[1].trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
         return LocalDate.parse(date, formatter);

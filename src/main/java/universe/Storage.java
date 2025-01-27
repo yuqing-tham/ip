@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -49,7 +50,8 @@ public class Storage {
                 break;
             case "D":
                 String date = parts[3];
-                LocalDate formattedDate = LocalDate.parse(date);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
+                LocalDate formattedDate = LocalDate.parse(date, formatter);
                 chore = new Deadline(description, formattedDate);
                 break;
             case "E":
