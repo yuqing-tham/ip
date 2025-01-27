@@ -2,6 +2,8 @@ package universe;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 /**
  * Universe is the main class where the chatbot will run, performing actions such as
@@ -70,15 +72,20 @@ public class Universe {
                     ToDo todo = new ToDo(description);
                     list.addChore(todo);
                 } else if (response.startsWith("deadline")) { // deals with a deadline chore
-                    String[] temp = r.getDeadlineDetails();
-                    Deadline deadline = new Deadline(temp[0].trim(), temp[1].trim());
+                    String description = r.getDeadlineDescription();
+                    LocalDateTime date = r.getDate();
+                    Deadline deadline = new Deadline(description, date);
                     list.addChore(deadline);
                 } else if (response.startsWith("event")) { // deals with an event chore
-                    String[] temp = r.getEventDetails();
-                    Event event = new Event(temp[0].trim(), temp[1].trim(), temp[2].trim());
+                    String description = r.getEventDescription();
+                    LocalDateTime start = r.getStartTime();
+                    LocalDateTime end = r.getEndTime();
+                    Event event = new Event(description, start, end);
                     list.addChore(event);
                 } else if (response.startsWith("remove")) { // deals with removing
                     list.removeChore(response);
+                } else if (response.startsWith("filter")) {
+                    list.filter(response);
                 } else { // command not recognised, so an invalid response exception is thrown
                     throw new InvalidResponseException();
                 }
@@ -90,6 +97,9 @@ public class Universe {
                 System.out.println(e.getMessage() + "\n"); // prints out error message
             } catch (IOException e) {
                 System.out.println("Sorry, unable to save chores. Please try again.\n");
+            } catch (DateTimeParseException e) {
+                System.out.println("Sorry, something wrong with the date format. " +
+                        "Please key following 'D-MMM-YYYY' format.\n");
             }
         }
     }
