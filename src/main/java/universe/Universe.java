@@ -2,6 +2,7 @@ package universe;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 
 /**
  * Universe is the main class where the chatbot will run, performing actions such as
@@ -71,7 +72,8 @@ public class Universe {
                     list.addChore(todo);
                 } else if (response.startsWith("deadline")) { // deals with a deadline chore
                     String[] temp = r.getDeadlineDetails();
-                    Deadline deadline = new Deadline(temp[0].trim(), temp[1].trim());
+                    LocalDate date = r.getDate();
+                    Deadline deadline = new Deadline(temp[0].trim(), date);
                     list.addChore(deadline);
                 } else if (response.startsWith("event")) { // deals with an event chore
                     String[] temp = r.getEventDetails();

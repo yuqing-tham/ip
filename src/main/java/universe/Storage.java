@@ -3,6 +3,7 @@ package universe;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -48,7 +49,8 @@ public class Storage {
                 break;
             case "D":
                 String date = parts[3];
-                chore = new Deadline(description, date);
+                LocalDate formattedDate = LocalDate.parse(date);
+                chore = new Deadline(description, formattedDate);
                 break;
             case "E":
                 String[] temp = parts[3].split("-");

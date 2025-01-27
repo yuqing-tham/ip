@@ -1,5 +1,9 @@
 package universe;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * SplitResponse class is chiefly in charge of splitting the user's response into useful parts:
  * description of the chore, the deadline, the start and end times of events
@@ -23,6 +27,12 @@ public class SplitResponse {
         String temp = this.getDescription();
         String[] parts = temp.split("by", 2);
         return parts;
+    }
+
+    public LocalDate getDate() {
+        String date = this.getDeadlineDetails()[1].trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+        return LocalDate.parse(date, formatter);
     }
 
     // for the event chore
