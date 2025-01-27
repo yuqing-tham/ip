@@ -3,8 +3,9 @@ package universe;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -38,9 +39,9 @@ public class Storage {
 
             // split the command into relevant parts
             String[] parts = command.split(" \\| ", 4);
-            String choreType = parts[0];
-            String isDone = parts[1];
-            String description = parts[2];
+            String choreType = parts[0].trim();
+            String isDone = parts[1].trim();
+            String description = parts[2].trim();
 
             // create new chores and add to checklist based on chore type
             Chore chore = null;
@@ -49,14 +50,29 @@ public class Storage {
                 chore = new ToDo(description);
                 break;
             case "D":
-                String date = parts[3];
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
-                LocalDate formattedDate = LocalDate.parse(date, formatter);
-                chore = new Deadline(description, formattedDate);
+                String date = parts[3].trim();
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy HH:mm");
+                    LocalDateTime formattedDate = LocalDateTime.parse(date, formatter);
+                    chore = new Deadline(description, formattedDate);
+                } catch (DateTimeParseException e) {
+                    System.out.println("Something seems to be wrong with the date/time formats " +
+                            "in the provided Checklist.\n");
+                }
                 break;
             case "E":
-                String[] temp = parts[3].split("-");
-                chore = new Event(description, temp[0], temp[1]);
+                String[] temp = parts[3].split("to");
+                String start = temp[0].trim();
+                String end = temp[1].trim();
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy HH:mm");
+                    LocalDateTime formattedStart = LocalDateTime.parse(start, formatter);
+                    LocalDateTime formattedEnd = LocalDateTime.parse(end, formatter);
+                    chore = new Event(description, formattedStart, formattedEnd);
+                } catch (DateTimeParseException e) {
+                    System.out.println("Something seems to be wrong with the date/time formats " +
+                            "in the provided Checklist.\n");
+                }
                 break;
             default:
                 throw new IncorrectFormatException();

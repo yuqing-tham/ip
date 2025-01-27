@@ -2,7 +2,7 @@ package universe;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -72,13 +72,15 @@ public class Universe {
                     ToDo todo = new ToDo(description);
                     list.addChore(todo);
                 } else if (response.startsWith("deadline")) { // deals with a deadline chore
-                    String[] temp = r.getDeadlineDetails();
-                    LocalDate date = r.getDate();
-                    Deadline deadline = new Deadline(temp[0].trim(), date);
+                    String description = r.getDeadlineDescription();
+                    LocalDateTime date = r.getDate();
+                    Deadline deadline = new Deadline(description, date);
                     list.addChore(deadline);
                 } else if (response.startsWith("event")) { // deals with an event chore
-                    String[] temp = r.getEventDetails();
-                    Event event = new Event(temp[0].trim(), temp[1].trim(), temp[2].trim());
+                    String description = r.getEventDescription();
+                    LocalDateTime start = r.getStartTime();
+                    LocalDateTime end = r.getEndTime();
+                    Event event = new Event(description, start, end);
                     list.addChore(event);
                 } else if (response.startsWith("remove")) { // deals with removing
                     list.removeChore(response);

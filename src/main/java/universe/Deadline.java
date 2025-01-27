@@ -1,6 +1,6 @@
 package universe;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -8,15 +8,15 @@ import java.time.format.DateTimeParseException;
  * This class inherits from Chore and overrides the toString() method to print further details.
  */
 public class Deadline extends Chore {
-    private LocalDate date;
+    private LocalDateTime date;
 
-    public Deadline(String choreDescription, LocalDate date) {
+    public Deadline(String choreDescription, LocalDateTime date) {
         super(choreDescription);
         this.date = date;
     }
 
     public String reformatDate() throws DateTimeParseException {
-        return date.format(DateTimeFormatter.ofPattern("d-M-yyyy"));
+        return date.format(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
     }
 
     @Override
