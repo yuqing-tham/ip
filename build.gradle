@@ -28,14 +28,15 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("universe.Universe")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "universe"
     archiveClassifier = null
 }
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }
