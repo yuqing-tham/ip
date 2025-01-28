@@ -54,13 +54,13 @@ public class Parser {
         return temp[0].trim();
     }
 
-    public LocalDateTime getStartTime() {
+    public LocalDateTime getStartTime() throws DateTimeParseException {
         String start = this.getEventDetails()[1].trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HHmm");
         return LocalDateTime.parse(start, formatter);
     }
 
-    public LocalDateTime getEndTime() {
+    public LocalDateTime getEndTime() throws DateTimeParseException {
         String end = this.getEventDetails()[2].trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HHmm");
         return LocalDateTime.parse(end, formatter);
