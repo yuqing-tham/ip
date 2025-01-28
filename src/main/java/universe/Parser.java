@@ -5,14 +5,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * SplitResponse class is chiefly in charge of splitting the user's response into useful parts:
+ * Parser class is chiefly in charge of splitting the user's response into useful parts:
  * description of the chore, the deadline, the start and end times of events
  */
 
-public class SplitResponse {
+public class Parser {
     private String response;
 
-    public SplitResponse(String response) {
+    public Parser(String response) {
         this.response = response;
     }
 

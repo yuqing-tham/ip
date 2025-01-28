@@ -6,6 +6,6 @@ package universe;
  */
 public class IncorrectFormatException extends UniverseException {
     public IncorrectFormatException() {
-        super("Error in reading chore from the provided checklist.");
+        super("Error in reading chore from the provided checklist.\n");
     }
 }
