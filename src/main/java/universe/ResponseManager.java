@@ -3,12 +3,10 @@ package universe;
 import java.time.LocalDateTime;
 
 public class ResponseManager {
-    private Ui ui;
     private Checklist list;
     private String response;
 
-    public ResponseManager(Ui ui, Checklist list, String response) {
-        this.ui = ui;
+    public ResponseManager(Checklist list, String response) {
         this.list = list;
         this.response = response;
     }
@@ -16,9 +14,7 @@ public class ResponseManager {
     public void execute() throws InvalidResponseException {
         Parser r = new Parser(response);
 
-        if (response.contains("bye")) {
-            ui.bye();
-        } else if (response.contains("list")) { // prints checklist to screen if user says "list"
+        if (response.contains("list")) { // prints checklist to screen if user says "list"
             System.out.println("Cosmic Chore Checklist:");
             list.printChecklist();
         } else if (response.startsWith("check")) { // mark chore as done
