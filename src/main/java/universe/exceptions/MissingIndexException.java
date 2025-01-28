@@ -1,4 +1,4 @@
-package universe;
+package universe.exceptions;
 
 /**
  * MissingIndexException class inherits from UniverseException.

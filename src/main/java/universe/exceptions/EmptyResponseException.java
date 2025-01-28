@@ -1,4 +1,4 @@
-package universe;
+package universe.exceptions;
 
 /**
  * EmptyResponseException class inherits from UniverseException.

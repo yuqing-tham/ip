@@ -1,4 +1,13 @@
-package universe;
+package universe.response;
+
+import universe.Checklist;
+import universe.exceptions.EmptyResponseException;
+import universe.exceptions.InvalidResponseException;
+import universe.exceptions.MissingDescriptionException;
+import universe.exceptions.MissingIndexException;
+import universe.exceptions.MissingListItemException;
+import universe.exceptions.MissingStartAndEndException;
+import universe.exceptions.MissingTimeException;
 
 /**
  * CheckResponse class checks if a response by the user contains all the necessary details and handles errors accordingly.

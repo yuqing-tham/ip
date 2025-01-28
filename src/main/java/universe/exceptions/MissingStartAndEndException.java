@@ -1,4 +1,4 @@
-package universe;
+package universe.exceptions;
 
 /**
  * MissingStartAndEndException class inherits from UniverseException.

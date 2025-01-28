@@ -1,4 +1,10 @@
-package universe;
+package universe.response;
+
+import universe.Checklist;
+import universe.chores.Deadline;
+import universe.chores.Event;
+import universe.chores.ToDo;
+import universe.exceptions.InvalidResponseException;
 
 import java.time.LocalDateTime;
 

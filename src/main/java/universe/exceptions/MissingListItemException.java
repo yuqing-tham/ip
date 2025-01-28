@@ -1,4 +1,4 @@
-package universe;
+package universe.exceptions;
 
 /**
  * MissingListItemException class inherits from UniverseException.

@@ -1,4 +1,4 @@
-package universe;
+package universe.exceptions;
 
 /**
  * UniverseException inherits from Exception class.

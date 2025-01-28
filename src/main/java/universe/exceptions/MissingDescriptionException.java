@@ -1,4 +1,4 @@
-package universe;
+package universe.exceptions;
 
 /**
  * MissingDescriptionException class inherits from UniverseException.

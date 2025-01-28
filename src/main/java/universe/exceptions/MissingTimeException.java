@@ -1,4 +1,4 @@
-package universe;
+package universe.exceptions;
 
 /**
  * MissingTimeException class inherits from UniverseException.

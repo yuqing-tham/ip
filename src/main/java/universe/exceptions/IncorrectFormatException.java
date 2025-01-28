@@ -1,4 +1,4 @@
-package universe;
+package universe.exceptions;
 
 /**
  * IncorrectFormatException class inherits from UniverseException.

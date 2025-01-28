@@ -1,4 +1,4 @@
-package universe;
+package universe.exceptions;
 
 /**
  * InvalidResponseException class inherits from UniverseException.

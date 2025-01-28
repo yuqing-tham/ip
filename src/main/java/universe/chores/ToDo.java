@@ -1,4 +1,4 @@
-package universe;
+package universe.chores;
 
 import java.time.LocalDateTime;
 
