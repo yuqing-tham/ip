@@ -68,7 +68,7 @@ public class Parser {
         String temp = this.getDescription();
         String[] mid = temp.split("from", 2);
         String[] furtherSplit = mid[1].split("to");
-        String[] parts = new String[]{ mid[0], furtherSplit[0], furtherSplit[1] };
+        String[] parts = new String[]{mid[0], furtherSplit[0], furtherSplit[1]};
         return parts;
     }
 
