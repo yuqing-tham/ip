@@ -65,4 +65,9 @@ public class Parser {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HHmm");
         return LocalDateTime.parse(end, formatter);
     }
+
+    public String getKeyword() {
+        String[] parts = response.split(" ", 2);
+        return parts[1];
+    }
 }

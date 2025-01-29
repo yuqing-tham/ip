@@ -46,6 +46,9 @@ public class ResponseManager {
             list.removeChore(response);
         } else if (response.startsWith("filter")) {
             list.filter(response);
+        } else if (response.startsWith("find")) { // deals with finding chores with the keyword
+            String keyword = r.getKeyword();
+            list.find(keyword);
         } else { // command not recognised, so an invalid response exception is thrown
             throw new InvalidResponseException();
         }
