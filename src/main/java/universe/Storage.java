@@ -17,16 +17,26 @@ import java.util.Scanner;
 
 /**
  * Storage class deals with reading and writing to an existing checklist file.
+ * @author yuqing-tham
  */
 public class Storage {
     private String filepath;
 
+    /**
+     * Constructor for the Storage class.
+     * @param filepath String pointing to the file
+     */
     public Storage(String filepath) {
         this.filepath = filepath;
     }
 
-    // reads the contents of the file and splits the contents into relevant parts
-    // create the corresponding checklist of chores
+    /**
+     * Reads the content of the file and create the corresponding Checklist.
+     * Catches DateTimeParseException if there are any issues with parsing the date
+     * and prompts user to modify format in the file.
+     * @throws IOException if there are any issues with reading the file.
+     * @throws IncorrectFormatException if there are any issues with reading the file.
+     */
     public void readFile() throws IOException, IncorrectFormatException {
         File f = new File(filepath);
 
@@ -95,7 +105,10 @@ public class Storage {
         s.close(); // close the scanner
     }
 
-    // writes the new checklist to the existing file
+    /**
+     * Saves the modified Checklist to the file.
+     * @throws IOException if there are any issues writing to the file.
+     */
     public void saveChores() throws IOException {
         FileWriter fw = new FileWriter(filepath);
 

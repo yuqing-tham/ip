@@ -8,15 +8,29 @@ import universe.exceptions.InvalidResponseException;
 
 import java.time.LocalDateTime;
 
+/**
+ * ResponseManager class calls the corresponding functions based on the user inputs.
+ * @author yuqing-tham
+ */
 public class ResponseManager {
     private Checklist list;
     private String response;
 
+    /**
+     * Constructor for the ResponseManager class.
+     * @param list Checklist maintained by the Universe bot
+     * @param response String response by user
+     */
     public ResponseManager(Checklist list, String response) {
         this.list = list;
         this.response = response;
     }
 
+    /**
+     * Execute the corresponding action by calling the correct functions in different classes.
+     * Asks a Parser instance to help split the response to meaningful parts.
+     * @throws InvalidResponseException if user input not recognised under list of keywords
+     */
     public void execute() throws InvalidResponseException {
         Parser r = new Parser(response);
 
@@ -24,9 +38,11 @@ public class ResponseManager {
             System.out.println("Cosmic Chore Checklist:");
             list.printChecklist();
         } else if (response.startsWith("check")) { // mark chore as done
-            list.checkAsDone(response);
+            int choreNumber = r.getChoreNumber();
+            list.checkAsDone(choreNumber);
         } else if (response.startsWith("uncheck")) { // mark chore as not done
-            list.uncheckAsDone(response);
+            int choreNumber = r.getChoreNumber();
+            list.uncheckAsDone(choreNumber);
         } else if (response.startsWith("todo")) { // deals with a todo chore
             String description = r.getDescription();
             ToDo todo = new ToDo(description);
@@ -43,9 +59,12 @@ public class ResponseManager {
             Event event = new Event(description, start, end);
             list.addChore(event);
         } else if (response.startsWith("remove")) { // deals with removing
-            list.removeChore(response);
-        } else if (response.startsWith("filter")) {
-            list.filter(response);
+            int choreNumber = r.getChoreNumber();
+            list.removeChore(choreNumber);
+        } else if (response.startsWith("filter")) { // deals with filtering all the chores on a date
+            String dateString = r.getFilterDateString();
+            LocalDateTime date = r.getFilterDate();
+            list.filter(dateString, date);
         } else { // command not recognised, so an invalid response exception is thrown
             throw new InvalidResponseException();
         }

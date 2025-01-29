@@ -13,22 +13,32 @@ import java.time.format.DateTimeParseException;
  * Universe is the main class where the chatbot will run, performing actions such as
  * greeting the user, interacting with the user by responding appropriately, and
  * ending the session when the user says "bye".
+ * @author yuqing-tham
  */
 public class Universe {
     private final Ui ui;
     private Checklist list;
     private final Storage storage;
 
-    // constructor for Universe class
-    // every new "session" with the chatbot will create new instances of the action classes
+    /**
+     * Constructor for the Universe class.
+     * Creates a new instance of Ui to greet, wait for response and say goodbye.
+     * Creates a new instance of Checklist to store the checklist.
+     * Creates a new Storage instance to read and write to the file.
+     * @param filepath pointing to where the file containing the existing Checklist is
+     */
     public Universe(String filepath) {
         this.ui = new Ui();
         this.list = new Checklist();
         this.storage = new Storage(filepath);
     }
 
-    // main method to run the chatbot
-    // includes Universe's responses to different scenarios
+    /**
+     * The main method to run the Universe chatbot.
+     * Universe greets the user, read the file, and while user has yet to input "bye", waits for user's response,
+     * finally it saves the new checklist to the file.
+     * It catches Exceptions thrown by the different function calls and prints out the corresponding error messages.
+     */
     public void run() {
         ui.greet(); // Universe will greet the user for every new session
 
@@ -76,6 +86,9 @@ public class Universe {
         }
     }
 
+    /**
+     * The main method where a new instance of the Universe chatbot is created.
+     */
     public static void main(String[] args) {
         new Universe("data/chores.txt").run();
     }
