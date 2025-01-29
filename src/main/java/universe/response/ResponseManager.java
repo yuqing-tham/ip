@@ -65,6 +65,9 @@ public class ResponseManager {
             String dateString = r.getFilterDateString();
             LocalDateTime date = r.getFilterDate();
             list.filter(dateString, date);
+        } else if (response.startsWith("find")) { // deals with finding chores with the keyword
+            String keyword = r.getKeyword();
+            list.find(keyword);
         } else { // command not recognised, so an invalid response exception is thrown
             throw new InvalidResponseException();
         }

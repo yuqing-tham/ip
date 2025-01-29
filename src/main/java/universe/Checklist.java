@@ -1,6 +1,7 @@
 package universe;
 
 import universe.chores.Chore;
+import universe.response.Parser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -117,6 +118,22 @@ public class Checklist {
 
         if (!isFound) {
             System.out.println("No deadlines or events on this date\n");
+        }
+    }
+
+    public void find(String keyword) {
+        System.out.println("The matching Chores in the Checklist are:");
+
+        boolean isFound = false;
+        for (Chore c : checklist) {
+            if (c.getChoreDescription().contains(keyword)) {
+                isFound = true;
+                System.out.println(c.toString());
+            }
+        }
+
+        if (!isFound) {
+            System.out.println("No Chores matching this description\n");
         }
     }
 }

@@ -104,6 +104,7 @@ public class Parser {
         return LocalDateTime.parse(end, formatter);
     }
 
+<<<<<<< HEAD
     /**
      * Splits the response by the space for remove, check and uncheck commands.
      * @return int representing the choreNumber
@@ -140,5 +141,10 @@ public class Parser {
         LocalDateTime dateToFilter = LocalDateTime.parse(date + " 00:00"
                 , DateTimeFormatter.ofPattern("d MMM yyy HH:mm"));
         return dateToFilter;
+    }
+
+    public String getKeyword() {
+        String[] parts = response.split(" ", 2);
+        return parts[1];
     }
 }
