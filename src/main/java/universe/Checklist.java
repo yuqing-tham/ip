@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 
 public class Checklist {
-    private static ArrayList<Chore> checklist = new ArrayList<>(100);;
+    private static ArrayList<Chore> checklist = new ArrayList<>(100);
 
     public int getSize() {
         return checklist.size();
