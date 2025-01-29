@@ -43,4 +43,32 @@ public class ParserTest {
     public void getEndTimeTest(){
         assertEquals(LocalDateTime.parse("2025-03-05T20:00"), parser2.getEndTime());
     }
+
+    @Test
+    public void getChoreNumberTest() {
+        String response = "remove 3";
+        Parser parser = new Parser(response);
+        assertEquals(3, parser.getChoreNumber());
+    }
+
+    @Test
+    public void getFilterDateStringTest() {
+        String response = "filter 23 Feb 2025";
+        Parser parser = new Parser(response);
+        assertEquals("23 Feb 2025", parser.getFilterDateString());
+    }
+
+    @Test
+    public void getFilterDateTest() {
+        String response = "filter 23 Feb 2025";
+        Parser parser = new Parser(response);
+        assertEquals(LocalDateTime.parse("2025-02-23T00:00"), parser.getFilterDate());
+    }
+
+    @Test
+    public void getKeywordTest() {
+        String response = "find book";
+        Parser parser = new Parser(response);
+        assertEquals("book", parser.getKeyword());
+    }
 }

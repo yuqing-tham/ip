@@ -121,6 +121,10 @@ public class Checklist {
         }
     }
 
+    /**
+     * Finds the chores in the checklist that contains the keyword and prints them
+     * @param keyword to be checked against the chore descriptions
+     */
     public void find(String keyword) {
         System.out.println("The matching Chores in the Checklist are:");
 

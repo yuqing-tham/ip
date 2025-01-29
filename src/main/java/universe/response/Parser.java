@@ -104,7 +104,6 @@ public class Parser {
         return LocalDateTime.parse(end, formatter);
     }
 
-<<<<<<< HEAD
     /**
      * Splits the response by the space for remove, check and uncheck commands.
      * @return int representing the choreNumber
@@ -143,6 +142,10 @@ public class Parser {
         return dateToFilter;
     }
 
+    /**
+     * Splits the response by the space for find commands and extract the keyword part.
+     * @return a String containing the keyword to be passed on to Checklist
+     */
     public String getKeyword() {
         String[] parts = response.split(" ", 2);
         return parts[1];
