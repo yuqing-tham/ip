@@ -2,7 +2,6 @@ package universe.response;
 
 import org.junit.jupiter.api.Test;
 import universe.Checklist;
-import universe.ChecklistTest;
 import universe.chores.ToDo;
 import universe.exceptions.*;
 
