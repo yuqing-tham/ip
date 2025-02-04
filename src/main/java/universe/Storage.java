@@ -1,11 +1,5 @@
 package universe;
 
-import universe.chores.Chore;
-import universe.chores.Deadline;
-import universe.chores.Event;
-import universe.chores.ToDo;
-import universe.exceptions.IncorrectFormatException;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +8,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import universe.chores.Chore;
+import universe.chores.Deadline;
+import universe.chores.Event;
+import universe.chores.ToDo;
+import universe.exceptions.IncorrectFormatException;
 
 /**
  * Storage class deals with reading and writing to an existing checklist file.
@@ -72,8 +72,8 @@ public class Storage {
                     LocalDateTime formattedDate = LocalDateTime.parse(date, formatter);
                     chore = new Deadline(description, formattedDate);
                 } catch (DateTimeParseException e) {
-                    System.out.println("Something seems to be wrong with the date/time formats " +
-                            "in the provided Checklist.\n");
+                    System.out.println("Something seems to be wrong with the date/time formats "
+                            + "in the provided Checklist.\n");
                 }
                 break;
             case "E":
@@ -86,8 +86,8 @@ public class Storage {
                     LocalDateTime formattedEnd = LocalDateTime.parse(end, formatter);
                     chore = new Event(description, formattedStart, formattedEnd);
                 } catch (DateTimeParseException e) {
-                    System.out.println("Something seems to be wrong with the date/time formats " +
-                            "in the provided Checklist.\n");
+                    System.out.println("Something seems to be wrong with the date/time formats "
+                            + "in the provided Checklist.\n");
                 }
                 break;
             default:

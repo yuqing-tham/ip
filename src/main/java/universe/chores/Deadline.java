@@ -44,8 +44,8 @@ public class Deadline extends Chore {
 
     /**
      * Reformat the LocalDateTime to a String using DateTimeFormatter.
-     * @throws DateTimeParseException to catch errors in reformatting
      * @return String of reformatted date to be printed
+     * @throws DateTimeParseException to catch errors in reformatting
      */
     public String reformatDate() throws DateTimeParseException {
         return date.format(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));

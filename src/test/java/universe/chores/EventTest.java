@@ -1,27 +1,27 @@
 package universe.chores;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class EventTest {
-    LocalDateTime startTime = LocalDateTime.parse("31 Jan 2025 1600",
+    private LocalDateTime startTime = LocalDateTime.parse("31 Jan 2025 1600",
             DateTimeFormatter.ofPattern("d MMM yyyy HHmm"));
-    LocalDateTime endTime = LocalDateTime.parse("31 Jan 2025 1800",
+    private LocalDateTime endTime = LocalDateTime.parse("31 Jan 2025 1800",
             DateTimeFormatter.ofPattern("d MMM yyyy HHmm"));
-    Event event = new Event("project meeting", startTime, endTime);
+    private Event event = new Event("project meeting", startTime, endTime);
 
     @Test
-    public void toStringTest(){
+    public void toStringTest() {
         assertEquals("[E][ ] project meeting (from: 31-1-2025 16:00 to: 31-1-2025 18:00)",
                 event.toString());
     }
 
     @Test
-    public void toFileStringTest(){
+    public void toFileStringTest() {
         assertEquals("E | 0 | project meeting | 31-1-2025 16:00 to 31-1-2025 18:00",
                 event.toFileString());
     }

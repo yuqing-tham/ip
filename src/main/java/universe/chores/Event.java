@@ -47,8 +47,8 @@ public class Event extends Chore {
 
     /**
      * Reformat the start LocalDateTime to a String using DateTimeFormatter.
-     * @throws DateTimeParseException to catch errors in reformatting
      * @return String of reformatted date to be printed
+     * @throws DateTimeParseException to catch errors in reformatting
      */
     public String reformatStart() throws DateTimeParseException {
         return start.format(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
@@ -56,8 +56,8 @@ public class Event extends Chore {
 
     /**
      * Reformat the end LocalDateTime to a String using DateTimeFormatter.
-     * @throws DateTimeParseException to catch errors in reformatting
      * @return String of reformatted date to be printed
+     * @throws DateTimeParseException to catch errors in reformatting
      */
     public String reformatEnd() throws DateTimeParseException {
         return end.format(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));

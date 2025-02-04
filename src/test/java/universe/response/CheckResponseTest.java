@@ -1,15 +1,22 @@
 package universe.response;
 
-import org.junit.jupiter.api.Test;
-import universe.Checklist;
-import universe.chores.ToDo;
-import universe.exceptions.*;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.Test;
+
+import universe.Checklist;
+import universe.chores.ToDo;
+import universe.exceptions.EmptyResponseException;
+import universe.exceptions.InvalidResponseException;
+import universe.exceptions.MissingDescriptionException;
+import universe.exceptions.MissingIndexException;
+import universe.exceptions.MissingListItemException;
+import universe.exceptions.MissingStartAndEndException;
+import universe.exceptions.MissingTimeException;
+
 public class CheckResponseTest {
-    Checklist testList = new Checklist();
+    private Checklist testList = new Checklist();
 
     @Test
     public void handleError_emptyResponse_exceptionThrown() {

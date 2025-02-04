@@ -1,12 +1,12 @@
 package universe.response;
 
+import java.time.LocalDateTime;
+
 import universe.Checklist;
 import universe.chores.Deadline;
 import universe.chores.Event;
 import universe.chores.ToDo;
 import universe.exceptions.InvalidResponseException;
-
-import java.time.LocalDateTime;
 
 /**
  * ResponseManager class calls the corresponding functions based on the user inputs.

@@ -1,11 +1,9 @@
 package universe;
 
-import universe.chores.Chore;
-import universe.response.Parser;
-
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import universe.chores.Chore;
 
 /**
  * Checklist class helps keep track of the list of Chores to be completed.

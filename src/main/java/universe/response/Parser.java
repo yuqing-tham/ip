@@ -137,8 +137,8 @@ public class Parser {
      */
     public LocalDateTime getFilterDate() {
         String date = this.getFilterDateString();
-        LocalDateTime dateToFilter = LocalDateTime.parse(date + " 00:00"
-                , DateTimeFormatter.ofPattern("d MMM yyy HH:mm"));
+        LocalDateTime dateToFilter = LocalDateTime.parse(date + " 00:00",
+                DateTimeFormatter.ofPattern("d MMM yyy HH:mm"));
         return dateToFilter;
     }
 
