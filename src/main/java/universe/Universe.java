@@ -1,7 +1,9 @@
 package universe;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.time.format.DateTimeParseException;
 
 import universe.exceptions.IncorrectFormatException;
@@ -84,6 +86,44 @@ public class Universe {
                         + "Please key following 'D-MMM-YYYY' format.\n");
             }
         }
+    }
+
+    /**
+     * Generates a response for the user's chat message in the GUI.
+     * @return String response to be shown on the GUI.
+     */
+    public String getResponse(String input) {
+        // save original System out
+        PrintStream originalOut = System.out;
+
+        // to capture output
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream newOut = new PrintStream(outputStream);
+        System.setOut(newOut);
+
+        try {
+            CheckResponse c = new CheckResponse(input, list);
+            c.handleError();
+
+            ResponseManager manager = new ResponseManager(list, input);
+            manager.execute();
+
+            // save the chores to the corresponding file after each command
+            storage.saveChores();
+        } catch (FileNotFoundException e) {
+            return "Sorry, your Checklist file cannot be found!\n";
+        } catch (UniverseException e) {
+            return e.getMessage() + "\n";
+        } catch (IOException e) {
+            return "Sorry, unable to save chores. Please try again.\n";
+        } catch (DateTimeParseException e) {
+            return "Sorry, something wrong with the date format. "
+                    + "Please key following 'D-MMM-YYYY-HHmm' format.\n";
+        } finally {
+            // restore the original System out
+            System.setOut(originalOut);
+        }
+        return outputStream.toString();
     }
 
     /**

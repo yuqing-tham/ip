@@ -6,6 +6,7 @@ import java.util.Scanner;
  * Ui class deals with greeting the user, receiving user's response and saying goodbye.
  * @author yuqing-tham
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class Ui {
     private static final String INTRO = "Welcome to the Universe! \nWhat cosmic quest can I assist you with today?\n";
     private static final String BYE = "Farewell, Universe traveller. May our paths intersect again soon!";
@@ -26,7 +27,14 @@ public class Ui {
     }
 
     /**
-     * Prints out the goodbye message.
+     * Gets the greeting message.
+     */
+    public String getGreeting() {
+        return INTRO;
+    }
+
+    /**
+     * Prints the goodbye message.
      */
     public void bye() {
         System.out.println(BYE);

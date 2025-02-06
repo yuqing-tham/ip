@@ -34,7 +34,7 @@ public class ResponseManager {
     public void execute() throws InvalidResponseException {
         Parser r = new Parser(response);
 
-        if (response.contains("list")) { // prints checklist to screen if user says "list"
+        if (response.startsWith("list")) { // prints checklist to screen if user says "list"
             System.out.println("Cosmic Chore Checklist:");
             list.printChecklist();
         } else if (response.startsWith("check")) { // mark chore as done
