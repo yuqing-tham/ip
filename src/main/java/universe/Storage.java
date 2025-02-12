@@ -96,6 +96,7 @@ public class Storage {
 
             // mark the chore as done if isDone is true (indicated as 1)
             if (isDone.equals("1")) {
+                assert chore != null;
                 chore.markAsDone();
             }
 

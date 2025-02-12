@@ -46,6 +46,7 @@ public class Checklist {
      */
     public void removeChore(int choreNumber) {
         int index = choreNumber - 1;
+        assert index >= 0;
         Chore chore = chores.get(index);
         chores.remove(index);
         System.out.println("Got it, this chore is removed: \n" + chore.toString());
@@ -79,6 +80,7 @@ public class Checklist {
      */
     public void checkAsDone(int choreNumber) {
         int index = choreNumber - 1;
+        assert index >= 0;
         Chore chore = chores.get(index);
         chore.markAsDone();
         System.out.println("Yay " + chore.getChoreDescription() + " successfully completed!");
@@ -92,6 +94,7 @@ public class Checklist {
      */
     public void uncheckAsDone(int choreNumber) {
         int index = choreNumber - 1;
+        assert index >= 0;
         Chore chore = chores.get(index);
         chore.markAsNotDone();
         System.out.println(chore.getChoreDescription() + " marked as not done yet :(");
