@@ -33,6 +33,14 @@ public class Universe {
         this.ui = new Ui();
         this.list = new Checklist();
         this.storage = new Storage(filepath);
+        // attempt to read existing checklist file
+        try {
+            storage.readFile();
+        } catch (IncorrectFormatException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Sorry, unable to read provided checklist file.");
+        }
     }
 
     /**
@@ -43,15 +51,6 @@ public class Universe {
      */
     public void run() {
         ui.greet(); // Universe will greet the user for every new session
-
-        // attempt to read existing checklist file
-        try {
-            storage.readFile();
-        } catch (IncorrectFormatException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Sorry, unable to read provided checklist file.");
-        }
 
         boolean isRunComplete = false; // a "toggle switch" to keep track of whether the session has ended
 
