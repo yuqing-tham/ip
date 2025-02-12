@@ -4,7 +4,9 @@ import universe.Checklist;
 import universe.exceptions.EmptyResponseException;
 import universe.exceptions.InvalidResponseException;
 import universe.exceptions.MissingDescriptionException;
+import universe.exceptions.MissingFilterDateException;
 import universe.exceptions.MissingIndexException;
+import universe.exceptions.MissingKeywordException;
 import universe.exceptions.MissingListItemException;
 import universe.exceptions.MissingStartAndEndException;
 import universe.exceptions.MissingTimeException;
@@ -14,7 +16,7 @@ import universe.exceptions.MissingTimeException;
  * all the necessary details and handles errors accordingly.
  * @author yuqing-tham
  */
-public class CheckResponse {
+public class ResponseChecker {
     private String response;
     private Checklist list;
 
@@ -23,7 +25,7 @@ public class CheckResponse {
      * @param response String response by the user
      * @param list the Checklist maintained by the Universe bot containing all the existing Chores
      */
-    public CheckResponse(String response, Checklist list) {
+    public ResponseChecker(String response, Checklist list) {
         this.response = response;
         this.list = list;
     }
@@ -39,7 +41,8 @@ public class CheckResponse {
      * @throws MissingListItemException if user inputs a command with a list number not in Checklist
      */
     public void handleError() throws EmptyResponseException, MissingDescriptionException, MissingTimeException,
-            MissingStartAndEndException, MissingIndexException, InvalidResponseException, MissingListItemException {
+            MissingStartAndEndException, MissingIndexException, InvalidResponseException, MissingListItemException,
+            MissingFilterDateException, MissingKeywordException {
         if (response.isEmpty()) {
             throw new EmptyResponseException();
         } else {
@@ -71,6 +74,21 @@ public class CheckResponse {
                     if (choreIndex > list.getSize()) {
                         throw new MissingListItemException();
                     }
+                }
+                break;
+
+            case "list":
+                break;
+
+            case "filter":
+                if (r.length < 2) {
+                    throw new MissingFilterDateException();
+                }
+                break;
+
+            case "find":
+                if (r.length < 2) {
+                    throw new MissingKeywordException();
                 }
                 break;
 

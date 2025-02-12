@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
 
 import universe.exceptions.IncorrectFormatException;
 import universe.exceptions.UniverseException;
-import universe.response.CheckResponse;
+import universe.response.ResponseChecker;
 import universe.response.ResponseManager;
 
 /**
@@ -60,7 +60,7 @@ public class Universe {
             try {
                 // checks if response is a valid response with the correct details required
                 String response = ui.getResponse();
-                CheckResponse c = new CheckResponse(response, list);
+                ResponseChecker c = new ResponseChecker(response, list);
                 c.handleError();
 
                 // session terminated once user says "bye"
@@ -102,7 +102,7 @@ public class Universe {
         System.setOut(newOut);
 
         try {
-            CheckResponse c = new CheckResponse(input, list);
+            ResponseChecker c = new ResponseChecker(input, list);
             c.handleError();
 
             ResponseManager manager = new ResponseManager(list, input);
