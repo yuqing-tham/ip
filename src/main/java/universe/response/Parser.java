@@ -21,6 +21,15 @@ public class Parser {
     }
 
     /**
+     * Splits the response to obtain the part containing the first word in the user input.
+     * @return the first word in input
+     */
+    public String getCommandFirstWord() {
+        String[] parts = response.split(" ", 2);
+        return parts[0].trim();
+    }
+
+    /**
      * Splits the response to obtain the part containing the Chore descriptions.
      * @return the choreDescription for ToDo class
      */
