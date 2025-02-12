@@ -64,10 +64,10 @@ public class ResponseManager {
         } else if (response.startsWith("filter")) { // deals with filtering all the chores on a date
             String dateString = r.getFilterDateString();
             LocalDateTime date = r.getFilterDate();
-            list.filter(dateString, date);
+            list.filterByDate(dateString, date);
         } else if (response.startsWith("find")) { // deals with finding chores with the keyword
             String keyword = r.getKeyword();
-            list.find(keyword);
+            list.findByKeyword(keyword);
         } else { // command not recognised, so an invalid response exception is thrown
             throw new InvalidResponseException();
         }

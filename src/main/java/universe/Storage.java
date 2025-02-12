@@ -100,7 +100,7 @@ public class Storage {
             }
 
             // add the chore to the checklist
-            Checklist.getChecklist().add(chore);
+            Checklist.getChores().add(chore);
         }
         s.close(); // close the scanner
     }
@@ -114,7 +114,7 @@ public class Storage {
 
         // format the checklist
         StringBuilder textToWrite = new StringBuilder();
-        ArrayList<Chore> list = Checklist.getChecklist();
+        ArrayList<Chore> list = Checklist.getChores();
         for (Chore c : list) {
             textToWrite.append(c.toFileString());
             textToWrite.append("\n");

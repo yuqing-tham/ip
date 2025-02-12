@@ -10,22 +10,22 @@ import universe.chores.Chore;
  * @author yuqing-tham
  */
 public class Checklist {
-    private static ArrayList<Chore> checklist = new ArrayList<>(100);
+    private static ArrayList<Chore> chores = new ArrayList<>(100);
 
     /**
      * Getter to return the size of the Checklist.
      * @return the size of the list
      */
     public int getSize() {
-        return checklist.size();
+        return chores.size();
     }
 
     /**
      * Getter to return the checklist itself.
      * @return the checklist
      */
-    public static ArrayList<Chore> getChecklist() {
-        return checklist;
+    public static ArrayList<Chore> getChores() {
+        return chores;
     }
 
     /**
@@ -34,7 +34,7 @@ public class Checklist {
      * @param chore the Chore to be added
      */
     public void addChore(Chore chore) {
-        checklist.add(chore);
+        chores.add(chore);
         System.out.println(chore.toString() + " added to Checklist!");
         this.printCount();
     }
@@ -46,8 +46,8 @@ public class Checklist {
      */
     public void removeChore(int choreNumber) {
         int index = choreNumber - 1;
-        Chore chore = checklist.get(index);
-        checklist.remove(index);
+        Chore chore = chores.get(index);
+        chores.remove(index);
         System.out.println("Got it, this chore is removed: \n" + chore.toString());
         this.printCount();
     }
@@ -56,7 +56,7 @@ public class Checklist {
      * Prints the number of chores in the checklist.
      */
     public void printCount() {
-        int choreCount = checklist.size();
+        int choreCount = chores.size();
         System.out.println("You now have " + choreCount + " chore(s) in the checklist.\n");
     }
 
@@ -65,7 +65,7 @@ public class Checklist {
      */
     public void printChecklist() {
         int j = 1; // a counter to serve as index for the list
-        for (Chore c : checklist) { // for every element in the checklist
+        for (Chore c : chores) { // for every element in the checklist
             System.out.printf("%d %s%n", j, c.toString());
             j++;
         }
@@ -79,7 +79,7 @@ public class Checklist {
      */
     public void checkAsDone(int choreNumber) {
         int index = choreNumber - 1;
-        Chore chore = checklist.get(index);
+        Chore chore = chores.get(index);
         chore.markAsDone();
         System.out.println("Yay " + chore.getChoreDescription() + " successfully completed!");
         System.out.println(chore.toString() + "\n");
@@ -92,7 +92,7 @@ public class Checklist {
      */
     public void uncheckAsDone(int choreNumber) {
         int index = choreNumber - 1;
-        Chore chore = checklist.get(index);
+        Chore chore = chores.get(index);
         chore.markAsNotDone();
         System.out.println(chore.getChoreDescription() + " marked as not done yet :(");
         System.out.println(chore.toString() + "\n");
@@ -103,11 +103,11 @@ public class Checklist {
      * @param date the date to filter in String form
      * @param formattedDate the date to filter in LocalDateTime form
      */
-    public void filter(String date, LocalDateTime formattedDate) {
+    public void filterByDate(String date, LocalDateTime formattedDate) {
         System.out.println("Chores on " + date + ": ");
         boolean isFound = false;
 
-        for (Chore c : checklist) {
+        for (Chore c : chores) {
             if (c.isChoreWithTime() && c.getDateTime().toLocalDate().equals(formattedDate.toLocalDate())) {
                 isFound = true;
                 System.out.println(c.toString());
@@ -123,11 +123,11 @@ public class Checklist {
      * Finds the chores in the checklist that contains the keyword and prints them
      * @param keyword to be checked against the chore descriptions
      */
-    public void find(String keyword) {
+    public void findByKeyword(String keyword) {
         System.out.println("The matching Chores in the Checklist are:");
 
         boolean isFound = false;
-        for (Chore c : checklist) {
+        for (Chore c : chores) {
             if (c.getChoreDescription().contains(keyword)) {
                 isFound = true;
                 System.out.println(c.toString());
