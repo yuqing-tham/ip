@@ -18,16 +18,16 @@ import universe.exceptions.MissingTimeException;
  */
 public class ResponseChecker {
     private String response;
-    private Checklist list;
+    private Checklist chores;
 
     /**
      * Constructor for the CheckResponse class.
      * @param response String response by the user
-     * @param list the Checklist maintained by the Universe bot containing all the existing Chores
+     * @param chores the Checklist maintained by the Universe bot containing all the existing Chores
      */
-    public ResponseChecker(String response, Checklist list) {
+    public ResponseChecker(String response, Checklist chores) {
         this.response = response;
-        this.list = list;
+        this.chores = chores;
     }
 
     /**
@@ -71,13 +71,14 @@ public class ResponseChecker {
                     throw new MissingIndexException();
                 } else {
                     int choreIndex = Integer.parseInt(r[1]); // only applicable to commands check, uncheck and remove
-                    if (choreIndex > list.getSize()) {
+                    if (choreIndex > chores.getSize()) {
                         throw new MissingListItemException();
                     }
                 }
                 break;
 
             case "list":
+            case "clear":
                 break;
 
             case "filter":

@@ -66,10 +66,10 @@ public class Storage {
                 chore = new ToDo(description);
                 break;
             case "D":
-                String date = parts[3].trim();
+                String deadlineDate = parts[3].trim();
                 try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy HH:mm");
-                    LocalDateTime formattedDate = LocalDateTime.parse(date, formatter);
+                    LocalDateTime formattedDate = LocalDateTime.parse(deadlineDate, formatter);
                     chore = new Deadline(description, formattedDate);
                 } catch (DateTimeParseException e) {
                     System.out.println("Something seems to be wrong with the date/time formats "
@@ -78,12 +78,12 @@ public class Storage {
                 break;
             case "E":
                 String[] temp = parts[3].split("to");
-                String start = temp[0].trim();
-                String end = temp[1].trim();
+                String startDateTime = temp[0].trim();
+                String endDateTime = temp[1].trim();
                 try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy HH:mm");
-                    LocalDateTime formattedStart = LocalDateTime.parse(start, formatter);
-                    LocalDateTime formattedEnd = LocalDateTime.parse(end, formatter);
+                    LocalDateTime formattedStart = LocalDateTime.parse(startDateTime, formatter);
+                    LocalDateTime formattedEnd = LocalDateTime.parse(endDateTime, formatter);
                     chore = new Event(description, formattedStart, formattedEnd);
                 } catch (DateTimeParseException e) {
                     System.out.println("Something seems to be wrong with the date/time formats "
