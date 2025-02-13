@@ -10,17 +10,17 @@ import java.time.format.DateTimeParseException;
  * @author yuqing-tham
  */
 public class Deadline extends Chore {
-    private LocalDateTime date;
+    private LocalDateTime deadlineDateTime;
 
     /**
      * Constructor for Deadline class. Takes in the choreDescription
-     * and an additional field date for the deadline date.
+     * and an additional field deadlineDateTime for the deadline deadlineDateTime.
      * @param choreDescription String description of the Deadline Chore
-     * @param date deadline of the Deadline Chore as an instance of LocalDateTime
+     * @param deadlineDateTime deadline of the Deadline Chore as an instance of LocalDateTime
      */
-    public Deadline(String choreDescription, LocalDateTime date) {
+    public Deadline(String choreDescription, LocalDateTime deadlineDateTime) {
         super(choreDescription);
-        this.date = date;
+        this.deadlineDateTime = deadlineDateTime;
     }
 
     /**
@@ -30,7 +30,7 @@ public class Deadline extends Chore {
      */
     @Override
     public LocalDateTime getDateTime() {
-        return date;
+        return deadlineDateTime;
     }
 
     /**
@@ -48,7 +48,7 @@ public class Deadline extends Chore {
      * @throws DateTimeParseException to catch errors in reformatting
      */
     public String reformatDate() throws DateTimeParseException {
-        return date.format(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
+        return deadlineDateTime.format(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
     }
 
     /**

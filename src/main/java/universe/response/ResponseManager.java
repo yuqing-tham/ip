@@ -13,16 +13,16 @@ import universe.exceptions.InvalidResponseException;
  * @author yuqing-tham
  */
 public class ResponseManager {
-    private Checklist list;
+    private Checklist chores;
     private String response;
 
     /**
      * Constructor for the ResponseManager class.
-     * @param list Checklist maintained by the Universe bot
+     * @param chores Checklist maintained by the Universe bot
      * @param response String response by user
      */
-    public ResponseManager(Checklist list, String response) {
-        this.list = list;
+    public ResponseManager(Checklist chores, String response) {
+        this.chores = chores;
         this.response = response;
     }
 
@@ -37,54 +37,58 @@ public class ResponseManager {
         switch (command) {
         case "list":
             System.out.println("Cosmic Chore Checklist:");
-            list.printChecklist();
+            chores.printChecklist();
             break;
 
         case "check":
             int choreNumberCheck = r.getChoreNumber();
-            list.checkAsDone(choreNumberCheck);
+            chores.checkAsDone(choreNumberCheck);
             break;
 
         case "uncheck":
             int choreNumberUncheck = r.getChoreNumber();
-            list.uncheckAsDone(choreNumberUncheck);
+            chores.uncheckAsDone(choreNumberUncheck);
             break;
 
         case "todo":
             String todoDescription = r.getDescription();
             ToDo todo = new ToDo(todoDescription);
-            list.addChore(todo);
+            chores.addChore(todo);
             break;
 
         case "deadline":
             String deadlineDescription = r.getDeadlineDescription();
-            LocalDateTime date = r.getDate();
-            Deadline deadline = new Deadline(deadlineDescription, date);
-            list.addChore(deadline);
+            LocalDateTime deadlineDateTime = r.getDate();
+            Deadline deadline = new Deadline(deadlineDescription, deadlineDateTime);
+            chores.addChore(deadline);
             break;
 
         case "event":
             String eventDescription = r.getEventDescription();
-            LocalDateTime start = r.getStartTime();
-            LocalDateTime end = r.getEndTime();
-            Event event = new Event(eventDescription, start, end);
-            list.addChore(event);
+            LocalDateTime startDateTime = r.getStartTime();
+            LocalDateTime endDateTime = r.getEndTime();
+            Event event = new Event(eventDescription, startDateTime, endDateTime);
+            chores.addChore(event);
             break;
 
         case "remove":
             int choreNumber = r.getChoreNumber();
-            list.removeChore(choreNumber);
+            chores.removeChore(choreNumber);
             break;
 
         case "filter":
             String dateString = r.getFilterDateString();
             LocalDateTime filterDate = r.getFilterDate();
-            list.filterByDate(dateString, filterDate);
+            chores.filterByDate(dateString, filterDate);
             break;
 
         case "find":
             String keyword = r.getKeyword();
-            list.findByKeyword(keyword);
+            chores.findByKeyword(keyword);
+            break;
+
+        case "clear":
+            chores.clearAllChores();
             break;
 
         default:

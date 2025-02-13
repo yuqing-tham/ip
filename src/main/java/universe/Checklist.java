@@ -141,4 +141,17 @@ public class Checklist {
             System.out.println("No Chores matching this description\n");
         }
     }
+
+    /**
+     * Removes all the chores from the checklist
+     */
+    public void clearAllChores() {
+        if (chores.isEmpty()) {
+            System.out.println("Checklist is originally empty!");
+        } else {
+            chores.clear();
+            System.out.println("All chores removed successfully from the Checklist!");
+            this.printCount();
+        }
+    }
 }
