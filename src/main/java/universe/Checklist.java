@@ -6,32 +6,31 @@ import java.util.ArrayList;
 import universe.chores.Chore;
 
 /**
- * Checklist class helps keep track of the list of Chores to be completed.
+ * Represents a list of Chores to be completed.
+ *
  * @author yuqing-tham
  */
 public class Checklist {
     private static ArrayList<Chore> chores = new ArrayList<>(100);
 
     /**
-     * Getter to return the size of the Checklist.
-     * @return the size of the list
+     * Returns the size of the checklist chores.
      */
     public int getSize() {
         return chores.size();
     }
 
     /**
-     * Getter to return the checklist itself.
-     * @return the checklist
+     * Returns the checklist chores.
      */
     public static ArrayList<Chore> getChores() {
         return chores;
     }
 
     /**
-     * Adds a chore to the checklist and prints a confirmation message
-     * along with the number of chores in the list.
-     * @param chore the Chore to be added
+     * Adds a chore to the checklist.
+     *
+     * @param chore The Chore to be added to the list.
      */
     public void addChore(Chore chore) {
         chores.add(chore);
@@ -40,9 +39,9 @@ public class Checklist {
     }
 
     /**
-     * Removes a chore to the checklist and prints a confirmation message
-     * along with the number of remaining chores in the list.
-     * @param choreNumber the number of the Chore to be removed
+     * Removes a chore from the checklist.
+     *
+     * @param choreNumber The number of the Chore to be removed.
      */
     public void removeChore(int choreNumber) {
         int index = choreNumber - 1;
@@ -75,8 +74,8 @@ public class Checklist {
 
     /**
      * Locates the corresponding chore in the checklist and asks the Chore to mark itself as done.
-     * Prints out a confirmation message.
-     * @param choreNumber the choreNumber minus 1 is the corresponding index in the ArrayList
+     *
+     * @param choreNumber ChoreNumber - 1 is the corresponding index in the list chores.
      */
     public void checkAsDone(int choreNumber) {
         int index = choreNumber - 1;
@@ -89,8 +88,8 @@ public class Checklist {
 
     /**
      * Locates the corresponding chore in the checklist and asks the Chore to mark itself as not done.
-     * Prints out a confirmation message.
-     * @param choreNumber the choreNumber minus 1 is the corresponding index in the ArrayList
+     *
+     * @param choreNumber ChoreNumber - 1 is the corresponding index in the list chores.
      */
     public void uncheckAsDone(int choreNumber) {
         int index = choreNumber - 1;
@@ -102,9 +101,10 @@ public class Checklist {
     }
 
     /**
-     * Filters the chores in the checklist with the corresponding date. Only checks deadline and event chores.
-     * @param date the date to filter in String form
-     * @param formattedDate the date to filter in LocalDateTime form
+     * Filters the chores in the checklist by date.
+     *
+     * @param date The date to filter in String form.
+     * @param formattedDate The date to filter in LocalDateTime form.
      */
     public void filterByDate(String date, LocalDateTime formattedDate) {
         System.out.println("Chores on " + date + ": ");
@@ -123,8 +123,9 @@ public class Checklist {
     }
 
     /**
-     * Finds the chores in the checklist that contains the keyword and prints them
-     * @param keyword to be checked against the chore descriptions
+     * Finds the chores in the checklist that contains the keyword.
+     *
+     * @param keyword Keyword to be checked against the chore descriptions.
      */
     public void findByKeyword(String keyword) {
         System.out.println("The matching Chores in the Checklist are:");
@@ -143,7 +144,7 @@ public class Checklist {
     }
 
     /**
-     * Removes all the chores from the checklist
+     * Removes all the chores from the checklist.
      */
     public void clearAllChores() {
         if (chores.isEmpty()) {

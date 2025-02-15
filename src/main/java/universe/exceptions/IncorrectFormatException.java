@@ -1,14 +1,13 @@
 package universe.exceptions;
 
 /**
- * IncorrectFormatException class inherits from UniverseException.
- * It passes on the error message that there is an error reading from the checklist file.
+ * Represents an exception that is thrown when the data in the existing checklist file is incorrect.
+ *
  * @author yuqing-tham
  */
 public class IncorrectFormatException extends UniverseException {
-
     /**
-     * Constructor for the Exception class. Passes on the corresponding error message.
+     * Constructs a new IncorrectFormatException with the specified detail message.
      */
     public IncorrectFormatException() {
         super("Error in reading chore from the provided checklist.\n");

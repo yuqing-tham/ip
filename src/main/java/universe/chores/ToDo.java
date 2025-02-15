@@ -3,24 +3,25 @@ package universe.chores;
 import java.time.LocalDateTime;
 
 /**
- * This class inherits from Chore and overrides the toString()
- * and toFileString() methods to print further details.
+ * Inherits from the abstract Chore class and provides implementation of methods specific to the ToDo chore type.
+ *
  * @author yuqing-tham
  */
 public class ToDo extends Chore {
-
     /**
-     * Constructor for ToDo class. Takes in the choreDescription.
-     * @param choreDescription String description of the chore
+     * Constructs a new ToDo chore with a specified description.
+     *
+     * @param choreDescription String description of the ToDo chore.
      */
     public ToDo(String choreDescription) {
         super(choreDescription);
     }
 
     /**
-     * Getter to return the date and time details.
-     * Provides a concrete implementation to parent's abstract method.
-     * @return null since ToDo has no date and time details
+     * Returns the date and time details.
+     * Overrides the parent class Chore's abstract method.
+     *
+     * @return null Since ToDo has no date and time details.
      */
     @Override
     public LocalDateTime getDateTime() {
@@ -28,8 +29,9 @@ public class ToDo extends Chore {
     }
 
     /**
-     * Override the method in parent class Chore to provide further details.
-     * @return a formatted String intended to show ToDo successfully added
+     * Overrides the method in the parent class Chore to provide details specific to the chore type.
+     *
+     * @return A formatted String to show additional details specific to ToDo.
      */
     @Override
     public String toString() {
@@ -37,8 +39,9 @@ public class ToDo extends Chore {
     }
 
     /**
-     * Override the method in parent class Chore to provide further details.
-     * @return a formatted String intended to be written into the Checklist file
+     * Overrides the method in the parent class Chore to provide details specific to the chore type.
+     *
+     * @return A formatted String to be written into the Checklist file.
      */
     @Override
     public String toFileString() {

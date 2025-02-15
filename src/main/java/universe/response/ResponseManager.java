@@ -9,7 +9,8 @@ import universe.chores.ToDo;
 import universe.exceptions.InvalidResponseException;
 
 /**
- * ResponseManager class calls the corresponding functions based on the user inputs.
+ * Responsible for calling the corresponding functions based on user input.
+ *
  * @author yuqing-tham
  */
 public class ResponseManager {
@@ -17,9 +18,10 @@ public class ResponseManager {
     private String response;
 
     /**
-     * Constructor for the ResponseManager class.
-     * @param chores Checklist maintained by the Universe bot
-     * @param response String response by user
+     * Constructs a new ResponseManager to execute commands based on user input.
+     *
+     * @param chores A Checklist maintained by the Universe bot.
+     * @param response A String representing the response by the user.
      */
     public ResponseManager(Checklist chores, String response) {
         this.chores = chores;
@@ -27,9 +29,10 @@ public class ResponseManager {
     }
 
     /**
-     * Execute the corresponding action by calling the correct functions in different classes.
-     * Asks a Parser instance to help split the response to meaningful parts.
-     * @throws InvalidResponseException if user input not recognised under list of keywords
+     * Asks a Parser instance to help split the response to meaningful parts,
+     * then executes the corresponding actions by calling functions in different classes.
+     *
+     * @throws InvalidResponseException If the user input is not recognised under the list of approved commands.
      */
     public void execute() throws InvalidResponseException {
         Parser r = new Parser(response);

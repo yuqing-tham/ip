@@ -5,16 +5,25 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Parser class is chiefly in charge of splitting the user's response into useful parts:
- * description of the chore, the deadline, the start and end times of events
+ * Responsible for parsing user input into meaningful components for chore management.
+ * <p>
+ * This class extracts key details from user commands, including:
+ * </p>
+ * <ul>
+ *     <li>Description of the chore</li>
+ *     <li>Deadline for Deadline chore type</li>
+ *     <li>Start and end date/times for Event chore type</li>
+ * </ul>
+ *
  * @author yuqing-tham
  */
 public class Parser {
     private String response;
 
     /**
-     * Constructor for the Parser class.
-     * @param response String response by user
+     * Constructs a new Parser with the user response.
+     *
+     * @param response Input by user.
      */
     public Parser(String response) {
         this.response = response;
@@ -22,7 +31,8 @@ public class Parser {
 
     /**
      * Splits the response to obtain the part containing the first word in the user input.
-     * @return the first word in input
+     *
+     * @return The first word in input.
      */
     public String getCommandFirstWord() {
         String[] parts = response.split(" ", 2);
@@ -30,8 +40,9 @@ public class Parser {
     }
 
     /**
-     * Splits the response to obtain the part containing the Chore descriptions.
-     * @return the choreDescription for ToDo class
+     * Splits the response to obtain the part containing the Chore description.
+     *
+     * @return The choreDescription.
      */
     public String getDescription() {
         String[] parts = response.split(" ", 2);
@@ -40,7 +51,8 @@ public class Parser {
 
     /**
      * Splits the response by the word "by".
-     * @return a String array containing the chore description and the deadline date
+     *
+     * @return A String array containing the chore description and the deadline date/time.
      */
     public String[] getDeadlineDetails() {
         String temp = this.getDescription();
@@ -49,9 +61,7 @@ public class Parser {
     }
 
     /**
-     * Getter for the deadline description.
-     * Calls getDeadlineDetails() and extracts the necessary parts from the array.
-     * @return the choreDescription for Deadline class
+     * Returns the deadline chore description by extracting the necessary parts.
      */
     public String getDeadlineDescription() {
         String description = this.getDeadlineDetails()[0].trim();
@@ -59,9 +69,7 @@ public class Parser {
     }
 
     /**
-     * Getter for the deadline date.
-     * Calls getDeadlineDetails() and extracts the necessary parts from the array.
-     * @return the date for Deadline class
+     * Returns the deadline chore deadline date/time by extracting the necessary parts.
      */
     public LocalDateTime getDate() throws DateTimeParseException {
         String date = this.getDeadlineDetails()[1].trim();
@@ -71,7 +79,8 @@ public class Parser {
 
     /**
      * Splits the response by the word "from" and "to".
-     * @return a String array containing the chore description and the deadline date
+     *
+     * @return A String array containing the chore description and the event details.
      */
     public String[] getEventDetails() {
         String temp = this.getDescription();
@@ -82,9 +91,7 @@ public class Parser {
     }
 
     /**
-     * Getter for the event description.
-     * Calls getEventDetails() and extracts the necessary parts from the array.
-     * @return the choreDescription for Event class
+     * Returns the event chore description by extracting the necessary parts.
      */
     public String getEventDescription() {
         String[] temp = this.getEventDetails();
@@ -92,9 +99,7 @@ public class Parser {
     }
 
     /**
-     * Getter for the event start time.
-     * Calls getEventDetails() and extracts the necessary parts from the array.
-     * @return the start time for Event class
+     * Returns the event chore start date/time by extracting the necessary parts.
      */
     public LocalDateTime getStartTime() throws DateTimeParseException {
         String start = this.getEventDetails()[1].trim();
@@ -103,9 +108,7 @@ public class Parser {
     }
 
     /**
-     * Getter for the event end time.
-     * Calls getEventDetails() and extracts the necessary parts from the array.
-     * @return the end time for Event class
+     * Returns the event chore end date/time by extracting the necessary parts.
      */
     public LocalDateTime getEndTime() throws DateTimeParseException {
         String end = this.getEventDetails()[2].trim();
@@ -114,8 +117,9 @@ public class Parser {
     }
 
     /**
-     * Splits the response by the space for remove, check and uncheck commands.
-     * @return int representing the choreNumber
+     * Splits the response by space for remove, check and uncheck commands.
+     *
+     * @return An integer representing the choreNumber.
      */
     public int getChoreNumber() {
         String[] parts = response.split(" ");
@@ -126,7 +130,8 @@ public class Parser {
 
     /**
      * Splits the response by the space for filter commands.
-     * @return a String array containing the command and the date
+     *
+     * @return A String array containing the command and the date.
      */
     public String[] splitFilter() {
         String[] parts = response.split(" ", 2);
@@ -134,16 +139,16 @@ public class Parser {
     }
 
     /**
-     * Getter for the date String by calling splitFilter().
-     * @return String date to be printed
+     * Returns the date to filter by.
+     *
+     * @return A String containing the date to be filtered by.
      */
     public String getFilterDateString() {
         return this.splitFilter()[1].trim();
     }
 
     /**
-     * Change the String to a LocalDateTime instance.
-     * @return LocalDateTime instance to be passed into the filter() method in Checklist class
+     * Changes the String to a LocalDateTime instance.
      */
     public LocalDateTime getFilterDate() {
         String date = this.getFilterDateString();
@@ -154,7 +159,8 @@ public class Parser {
 
     /**
      * Splits the response by the space for find commands and extract the keyword part.
-     * @return a String containing the keyword to be passed on to Checklist
+     *
+     * @return A String containing the keyword.
      */
     public String getKeyword() {
         String[] parts = response.split(" ", 2);

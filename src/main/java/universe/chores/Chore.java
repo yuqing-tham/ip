@@ -3,11 +3,13 @@ package universe.chores;
 import java.time.LocalDateTime;
 
 /**
- * Chore is the abstract base class for all types of Chores: ToDo, Deadline and Event,
- * which deals with the chore description, whether the Chore is a chore with time details,
- * prints formatted information about the Chore in two different formats using
- * methods toString() and toFileString(), and marks itself as done or not done.
+ * Represents an abstract base class for different types of chores,
+ * including ToDo, Deadline and Event.
+ * This class prints information about the Chore in two different formats.
+ * It also supports marking a chore as completed or not completed.
  * The implementation of this class is inspired by the Task class partial solution provided.
+ * Subclasses should implement additional behavior specific to their type.
+ *
  * @author yuqing-tham
  */
 public abstract class Chore {
@@ -15,55 +17,59 @@ public abstract class Chore {
     private boolean isDone;
 
     /**
-     * Constructor for Chore class. Takes in the choreDescription
+     * Constructs a new Chore with a specified description,
      * and sets the state isDone to the default false.
-     * @param choreDescription String description of the chore
+     *
+     * @param choreDescription A String description of the chore.
      */
     public Chore(String choreDescription) {
         this.choreDescription = choreDescription;
-        this.isDone = false; // completion status is not done by default
+        this.isDone = false;
     }
 
     /**
-     * Getter to return the private field choreDescription.
-     * @return choreDescription
+     * Returns the private field choreDescription.
+     *
      */
     public String getChoreDescription() {
         return choreDescription;
     }
 
     /**
-     * Getter to return the date and time details for subclasses Deadline and Event.
-     * Subclasses ToDo, Deadline and Event override this method.
-     * @return date and time details
+     * Returns the date and time details.
+     * Subclasses ToDo, Deadline and Event should override this method.
+     *
+     * @return Date and time details of the Chore.
      */
     public abstract LocalDateTime getDateTime();
 
     /**
-     * A chore and a ToDo is not a Chore with time.
-     * @return <code>true</code> if it is a chore with date and time details
+     * Returns true if it is a chore with date and time details.
+     *
+     * @return <code>true</code> if it is a Deadline or Event instance.
      */
     public boolean isChoreWithTime() {
         return false;
     }
 
     /**
-     * Mark the Chore as Done by changing its isDone state to true from the default false.
+     * Marks the Chore as Done by changing its isDone state to true from the default false.
      */
     public void markAsDone() {
         isDone = true;
     }
 
     /**
-     * Mark the Chore as Not Done by changing its isDone state to false.
+     * Marks the Chore as Not Done by changing its isDone state to false.
      */
     public void markAsNotDone() {
         isDone = false;
     }
 
     /**
-     * Override the Object.toString() method to print the choreDescription.
-     * @return a formatted String intended to show Chore successfully added
+     * Overrides the Object.toString() method to print the choreDescription.
+     *
+     * @return A formatted String intended to show Chore description and status.
      */
     @Override
     public String toString() {
@@ -72,10 +78,10 @@ public abstract class Chore {
     }
 
     /**
-     * Format a String to print choreDescription in an alternative way.
-     * @return a formatted String intended to be written into the Checklist file
+     * Prints the choreDescription in the format to be written into the file.
+     *
+     * @return A formatted String to be written into the Checklist file.
      */
-    // prints the details for the chore in the correct format to be put into the file
     public String toFileString() {
         String status = isDone ? "1" : "0";
         return " | " + status + " | " + choreDescription;

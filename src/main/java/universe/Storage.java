@@ -16,26 +16,28 @@ import universe.chores.ToDo;
 import universe.exceptions.IncorrectFormatException;
 
 /**
- * Storage class deals with reading and writing to an existing checklist file.
+ * Responsible for reading and writing to an existing checklist file.
+ * Creates the file if file does not exist.
+ *
  * @author yuqing-tham
  */
 public class Storage {
     private String filepath;
 
     /**
-     * Constructor for the Storage class.
-     * @param filepath String pointing to the file
+     * Constructs a new Storage with a specified filepath.
+     *
+     * @param filepath A String pointing to the file.
      */
     public Storage(String filepath) {
         this.filepath = filepath;
     }
 
     /**
-     * Reads the content of the file and create the corresponding Checklist.
-     * Catches DateTimeParseException if there are any issues with parsing the date
-     * and prompts user to modify format in the file.
-     * @throws IOException if there are any issues with reading the file.
-     * @throws IncorrectFormatException if there are any issues with reading the file.
+     * Reads the content of the file and create a new Checklist.
+     *
+     * @throws IOException If there are any issues with reading the file.
+     * @throws IncorrectFormatException If there are any issues with data in the file.
      */
     public void readFile() throws IOException, IncorrectFormatException {
         File f = new File(filepath);
@@ -51,7 +53,7 @@ public class Storage {
         Scanner s = new Scanner(f);
 
         while (s.hasNext()) {
-            String command = s.nextLine(); // read from the file
+            String command = s.nextLine();
 
             // split the command into relevant parts
             String[] parts = command.split(" \\| ", 4);
@@ -103,12 +105,13 @@ public class Storage {
             // add the chore to the checklist
             Checklist.getChores().add(chore);
         }
-        s.close(); // close the scanner
+        s.close();
     }
 
     /**
      * Saves the modified Checklist to the file.
-     * @throws IOException if there are any issues writing to the file.
+     *
+     * @throws IOException If there are any issues writing to the file.
      */
     public void saveChores() throws IOException {
         FileWriter fw = new FileWriter(filepath);

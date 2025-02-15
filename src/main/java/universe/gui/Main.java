@@ -17,8 +17,7 @@ public class Main extends Application {
     private Universe universe = new Universe("data/chores.txt");
 
     /**
-     * Overrides start() method in parent class Application.
-     * @param stage Window in desktop application.
+     * {@inheritDoc}
      */
     @Override
     public void start(Stage stage) {

@@ -35,7 +35,9 @@ public class MainWindow extends AnchorPane {
         this.greetUser();
     }
 
-    /** Injects the Universe instance */
+    /**
+     * Injects the Universe instance.
+     */
     public void setUniverse(Universe universe) {
         this.universe = universe;
     }

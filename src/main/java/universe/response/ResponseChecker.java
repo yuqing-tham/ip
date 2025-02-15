@@ -70,7 +70,7 @@ public class ResponseChecker {
                 if (r.length < 2) {
                     throw new MissingIndexException();
                 } else {
-                    int choreIndex = Integer.parseInt(r[1]); // only applicable to commands check, uncheck and remove
+                    int choreIndex = Integer.parseInt(r[1]);
                     if (choreIndex > chores.getSize()) {
                         throw new MissingListItemException();
                     }

@@ -1,14 +1,14 @@
 package universe.exceptions;
 
 /**
- * MissingListItemException class inherits from UniverseException.
- * It passes on the error message that the chore does not exist.
+ * Represents an exception that is thrown when user inputs a check, uncheck or remove command,
+ * but the index number provided exceeds the number of elements in the checklist.
+ *
  * @author yuqing-tham
  */
 public class MissingListItemException extends UniverseException {
-
     /**
-     * Constructor for the Exception class. Passes on the corresponding error message.
+     * Constructs a new MissingListItemException with the specified detail message.
      */
     public MissingListItemException() {
         super("This chore is not in the list :(");

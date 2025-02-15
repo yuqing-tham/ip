@@ -3,7 +3,8 @@ package universe;
 import java.util.Scanner;
 
 /**
- * Ui class deals with greeting the user, receiving user's response and saying goodbye.
+ * Responsible for greeting the user, waiting for user input and saying goodbye.
+ *
  * @author yuqing-tham
  */
 public class Ui {
@@ -12,21 +13,21 @@ public class Ui {
     private final Scanner scanner;
 
     /**
-     * Constructor for the Ui class. Takes in input from user keyboard.
+     * Constructs a new Ui that takes in keyboard input.
      */
     public Ui() {
         this.scanner = new Scanner(System.in);
     }
 
     /**
-     * Prints out the greeting message.
+     * Prints the greeting message.
      */
     public void greet() {
         System.out.println(INTRO);
     }
 
     /**
-     * Gets the greeting message.
+     * Returns the greeting message.
      */
     public String getGreeting() {
         return INTRO;
@@ -40,8 +41,9 @@ public class Ui {
     }
 
     /**
-     * Uses scanner's nextLine() method to check for keyboard input by user.
-     * @return String containing the user's response
+     * Checks for keyboard input by the user.
+     *
+     * @return A String containing the user's response.
      */
     public String getResponse() {
         return scanner.nextLine();

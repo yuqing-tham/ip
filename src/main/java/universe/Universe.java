@@ -12,28 +12,25 @@ import universe.response.ResponseChecker;
 import universe.response.ResponseManager;
 
 /**
- * Universe is the main class where the chatbot will run, performing actions such as
- * greeting the user, interacting with the user by responding appropriately, and
- * ending the session when the user says "bye".
+ * Responsible for running the Universe bot.
+ *
  * @author yuqing-tham
  */
 public class Universe {
     private final Ui ui;
-    private Checklist list;
+    private Checklist chores;
     private final Storage storage;
 
     /**
-     * Constructor for the Universe class.
-     * Creates a new instance of Ui to greet, wait for response and say goodbye.
-     * Creates a new instance of Checklist to store the checklist.
-     * Creates a new Storage instance to read and write to the file.
-     * @param filepath pointing to where the file containing the existing Checklist is
+     * Constructs a new Universe with a new Ui, Checklist and Storage instance.
+     * Attempts to read the existing checklist file.
+     *
+     * @param filepath Filepath to the existing checklist file.
      */
     public Universe(String filepath) {
         this.ui = new Ui();
-        this.list = new Checklist();
+        this.chores = new Checklist();
         this.storage = new Storage(filepath);
-        // attempt to read existing checklist file
         try {
             storage.readFile();
         } catch (IncorrectFormatException e) {
@@ -44,34 +41,28 @@ public class Universe {
     }
 
     /**
-     * The main method to run the Universe chatbot.
-     * Universe greets the user, read the file, and while user has yet to input "bye", waits for user's response,
-     * finally it saves the new checklist to the file.
-     * It catches Exceptions thrown by the different function calls and prints out the corresponding error messages.
+     * Greets the user, and while user has yet to input "bye", waits for user's response.
      */
     public void run() {
-        ui.greet(); // Universe will greet the user for every new session
+        ui.greet();
 
         boolean isRunComplete = false; // a "toggle switch" to keep track of whether the session has ended
-
-        // while user has yet to input "bye", Universe will wait for their response
         while (!isRunComplete) {
             try {
                 // checks if response is a valid response with the correct details required
                 String response = ui.getResponse();
-                ResponseChecker c = new ResponseChecker(response, list);
+                ResponseChecker c = new ResponseChecker(response, chores);
                 c.handleError();
 
-                // session terminated once user says "bye"
                 if (response.contains("bye")) {
                     isRunComplete = true;
                     ui.bye();
                 } else {
-                    ResponseManager manager = new ResponseManager(list, response);
+                    ResponseManager manager = new ResponseManager(chores, response);
                     manager.execute();
                 }
 
-                // save the chores to the corresponding file after each command
+                // save the chores to the file after each command
                 storage.saveChores();
 
             } catch (FileNotFoundException e) {
@@ -88,23 +79,24 @@ public class Universe {
     }
 
     /**
-     * Generates a response for the user's chat message in the GUI.
-     * @return String response to be shown on the GUI.
+     * Generates a response for the user input in the GUI.
+     *
+     * @return A String response to be shown in the GUI.
      */
     public String getResponse(String input) {
-        // save original System out
+        // save original system out
         PrintStream originalOut = System.out;
 
-        // to capture output
+        // capture output
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream newOut = new PrintStream(outputStream);
         System.setOut(newOut);
 
         try {
-            ResponseChecker c = new ResponseChecker(input, list);
+            ResponseChecker c = new ResponseChecker(input, chores);
             c.handleError();
 
-            ResponseManager manager = new ResponseManager(list, input);
+            ResponseManager manager = new ResponseManager(chores, input);
             manager.execute();
 
             // save the chores to the corresponding file after each command
@@ -119,14 +111,14 @@ public class Universe {
             return "Sorry, something wrong with the date format. "
                     + "Please key following 'D-MMM-YYYY-HHmm' format.\n";
         } finally {
-            // restore the original System out
+            // restore the original system out
             System.setOut(originalOut);
         }
         return outputStream.toString();
     }
 
     /**
-     * The main method where a new instance of the Universe chatbot is created.
+     * Creates a new Universe.
      */
     public static void main(String[] args) {
         new Universe("data/chores.txt").run();

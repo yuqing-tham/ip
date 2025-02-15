@@ -1,14 +1,13 @@
 package universe.exceptions;
 
 /**
- * InvalidResponseException class inherits from UniverseException.
- * It passes on the error message that the response is invalid.
+ * Represents an exception that is thrown when user inputs an invalid response.
+ *
  * @author yuqing-tham
  */
 public class InvalidResponseException extends UniverseException {
-
     /**
-     * Constructor for the Exception class. Passes on the corresponding error message.
+     * Constructs a new InvalidResponseException with the specified detail message.
      */
     public InvalidResponseException() {
         super("Sorry, this word doesn't exist in the Universe library yet.\n"

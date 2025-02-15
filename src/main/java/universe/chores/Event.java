@@ -5,8 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * This class inherits from Chore and overrides the toString()
- * and toFileString() methods to print further details.
+ * Inherits from the abstract Chore class and provides implementation of methods specific to the Event chore type.
+ *
  * @author yuqing-tham
  */
 public class Event extends Chore {
@@ -14,11 +14,11 @@ public class Event extends Chore {
     private LocalDateTime endDateTime;
 
     /**
-     * Constructor for Event class. Takes in the choreDescription
-     * and additional fields startDateTime and endDateTime for starting and ending times of the event.
-     * @param choreDescription String description of the Event Chore
-     * @param startDateTime startDateTime time of the Event as an instance of LocalDateTime
-     * @param endDateTime endDateTime time of the Event as an instance of LocalDateTime
+     * Constructs a new Event chore with a specified description, a start date/time and end date/time.
+     *
+     * @param choreDescription String description of the Event chore.
+     * @param startDateTime Starting date/time of the Event.
+     * @param endDateTime Ending date/time of the Event.
      */
     public Event(String choreDescription, LocalDateTime startDateTime, LocalDateTime endDateTime) {
         super(choreDescription);
@@ -27,9 +27,10 @@ public class Event extends Chore {
     }
 
     /**
-     * Getter to return the date and time details.
-     * Provides a concrete implementation to parent's abstract method.
-     * @return start time details
+     * Returns the date and time details.
+     * Overrides the parent class Chore's abstract method.
+     *
+     * @return Start date and time details of the Event chore.
      */
     @Override
     public LocalDateTime getDateTime() {
@@ -37,8 +38,8 @@ public class Event extends Chore {
     }
 
     /**
-     * An event has a date and time. Overrides the method in parent class to show true.
-     * @return <code>true</code> because it is a Chore with time details.
+     * Returns true as Event is a chore type with a date and time.
+     *
      */
     @Override
     public boolean isChoreWithTime() {
@@ -46,26 +47,29 @@ public class Event extends Chore {
     }
 
     /**
-     * Reformat the start LocalDateTime to a String using DateTimeFormatter.
-     * @return String of reformatted date to be printed
-     * @throws DateTimeParseException to catch errors in reformatting
+     * Changes the start LocalDateTime to a String.
+     *
+     * @return A String of the reformatted date and time.
+     * @throws DateTimeParseException If there are errors during reformatting.
      */
     public String reformatStartDateTime() throws DateTimeParseException {
         return startDateTime.format(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
     }
 
     /**
-     * Reformat the end LocalDateTime to a String using DateTimeFormatter.
-     * @return String of reformatted date to be printed
-     * @throws DateTimeParseException to catch errors in reformatting
+     * Changes the end LocalDateTime to a String.
+     *
+     * @return A String of the reformatted date and time.
+     * @throws DateTimeParseException If there are errors during reformatting.
      */
     public String reformatEndDateTime() throws DateTimeParseException {
         return endDateTime.format(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
     }
 
     /**
-     * Override the method in parent class Chore to provide further details.
-     * @return a formatted String intended to show Event successfully added
+     * Overrides the method in the parent class Chore to provide details specific to the chore type.
+     *
+     * @return A formatted String to show additional details specific to Event.
      */
     @Override
     public String toString() {
@@ -74,8 +78,9 @@ public class Event extends Chore {
     }
 
     /**
-     * Override the method in parent class Chore to provide further details.
-     * @return a formatted String intended to be written into the Checklist file
+     * Overrides the method in the parent class Chore to provide details specific to the chore type.
+     *
+     * @return A formatted String to be written into the Checklist file.
      */
     @Override
     public String toFileString() {
