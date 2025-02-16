@@ -1,7 +1,7 @@
 # Universe User Guide
 #### Welcome to the Ultimate Guide to the Universe!
 
-![A screenshot of the Universe UI.](Ui.png.jpg)
+![A screenshot of the Universe UI.](Ui.png)
 
 Meet **Universe**, a chatbot that caters to all your task managing needs.
 
