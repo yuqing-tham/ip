@@ -24,6 +24,9 @@ public class Event extends Chore {
         super(choreDescription);
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
+        if (startDateTime.isAfter(endDateTime) || startDateTime.equals(endDateTime)) {
+            throw new IllegalArgumentException("Start date/time must be before end date/time.");
+        }
     }
 
     /**

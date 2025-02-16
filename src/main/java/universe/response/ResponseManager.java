@@ -80,8 +80,12 @@ public class ResponseManager {
             String eventDescription = r.getEventDescription();
             LocalDateTime startDateTime = r.getStartTime();
             LocalDateTime endDateTime = r.getEndTime();
-            Event event = new Event(eventDescription, startDateTime, endDateTime);
-            chores.addChore(event);
+            try {
+                Event event = new Event(eventDescription, startDateTime, endDateTime);
+                chores.addChore(event);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + "\n");
+            }
             break;
 
         case "remove":
