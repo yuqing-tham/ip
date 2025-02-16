@@ -36,8 +36,8 @@ public class ResponseManager {
      * @throws InvalidResponseException If the user input is not recognised under the list of approved commands.
      */
     public void execute() throws InvalidResponseException {
-        Parser r = new Parser(response);
-        String command = r.getCommandFirstWord();
+        Parser parser = new Parser(response);
+        String command = parser.getCommandFirstWord();
         switch (command) {
         case "hi":
             System.out.println("Greetings Universe traveller! Type 'help' if you need the commands list.");
@@ -54,32 +54,32 @@ public class ResponseManager {
             break;
 
         case "check":
-            int choreNumberCheck = r.getChoreNumber();
+            int choreNumberCheck = parser.getChoreNumber();
             chores.checkAsDone(choreNumberCheck);
             break;
 
         case "uncheck":
-            int choreNumberUncheck = r.getChoreNumber();
+            int choreNumberUncheck = parser.getChoreNumber();
             chores.uncheckAsDone(choreNumberUncheck);
             break;
 
         case "todo":
-            String todoDescription = r.getDescription();
+            String todoDescription = parser.getDescription();
             ToDo todo = new ToDo(todoDescription);
             chores.addChore(todo);
             break;
 
         case "deadline":
-            String deadlineDescription = r.getDeadlineDescription();
-            LocalDateTime deadlineDateTime = r.getDate();
+            String deadlineDescription = parser.getDeadlineDescription();
+            LocalDateTime deadlineDateTime = parser.getDate();
             Deadline deadline = new Deadline(deadlineDescription, deadlineDateTime);
             chores.addChore(deadline);
             break;
 
         case "event":
-            String eventDescription = r.getEventDescription();
-            LocalDateTime startDateTime = r.getStartTime();
-            LocalDateTime endDateTime = r.getEndTime();
+            String eventDescription = parser.getEventDescription();
+            LocalDateTime startDateTime = parser.getStartTime();
+            LocalDateTime endDateTime = parser.getEndTime();
             try {
                 Event event = new Event(eventDescription, startDateTime, endDateTime);
                 chores.addChore(event);
@@ -89,18 +89,18 @@ public class ResponseManager {
             break;
 
         case "remove":
-            int choreNumber = r.getChoreNumber();
+            int choreNumber = parser.getChoreNumber();
             chores.removeChore(choreNumber);
             break;
 
         case "filter":
-            String dateString = r.getFilterDateString();
-            LocalDateTime filterDate = r.getFilterDate();
+            String dateString = parser.getFilterDateString();
+            LocalDateTime filterDate = parser.getFilterDate();
             chores.filterByDate(dateString, filterDate);
             break;
 
         case "find":
-            String keyword = r.getKeyword();
+            String keyword = parser.getKeyword();
             chores.findByKeyword(keyword);
             break;
 
