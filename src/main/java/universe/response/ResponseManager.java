@@ -3,6 +3,7 @@ package universe.response;
 import java.time.LocalDateTime;
 
 import universe.Checklist;
+import universe.CommandsList;
 import universe.chores.Deadline;
 import universe.chores.Event;
 import universe.chores.ToDo;
@@ -38,6 +39,15 @@ public class ResponseManager {
         Parser r = new Parser(response);
         String command = r.getCommandFirstWord();
         switch (command) {
+        case "hi":
+            System.out.println("Greetings Universe traveller! Type 'help' if you need the commands list.");
+            break;
+
+        case "help":
+            CommandsList commands = new CommandsList();
+            commands.printCommands();
+            break;
+
         case "list":
             System.out.println("Cosmic Chore Checklist:");
             chores.printChecklist();

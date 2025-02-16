@@ -8,7 +8,9 @@ import java.util.Scanner;
  * @author yuqing-tham
  */
 public class Ui {
-    private static final String INTRO = "Welcome to the Universe! \nWhat cosmic quest can I assist you with today?\n";
+    private static final String INTRO = "Welcome to the Universe!\n"
+            + "What cosmic quest can I assist you with today?\n"
+            + "Baby travellers, please input the command 'help' to retrieve the list of approved commands.\n";
     private static final String BYE = "Farewell, Universe traveller. May our paths intersect again soon!";
     private final Scanner scanner;
 

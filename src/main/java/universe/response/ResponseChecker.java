@@ -79,6 +79,8 @@ public class ResponseChecker {
 
             case "list":
             case "clear":
+            case "hi":
+            case "help":
                 break;
 
             case "filter":
