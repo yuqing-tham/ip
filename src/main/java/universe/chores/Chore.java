@@ -3,12 +3,14 @@ package universe.chores;
 import java.time.LocalDateTime;
 
 /**
- * Represents an abstract base class for different types of chores,
- * including ToDo, Deadline and Event.
- * This class prints information about the Chore in two different formats.
- * It also supports marking a chore as completed or not completed.
- * The implementation of this class is inspired by the Task class partial solution provided.
+ * An abstract base class representing different types of chores, including ToDo, Deadline, and Event.
+ * It provides functionality to display chore details in multiple formats.
+ * Additionally, it supports marking a chore as completed or not completed.
+ *
+ * <p>
+ * This class is based on the Task class partial solution provided.
  * Subclasses should implement additional behavior specific to their type.
+ * </p>
  *
  * @author yuqing-tham
  */

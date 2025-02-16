@@ -17,26 +17,16 @@ import java.time.format.DateTimeParseException;
  *
  * @author yuqing-tham
  */
-public class Parser {
+public class UserInputParser {
     private String response;
 
     /**
-     * Constructs a new Parser with the user response.
+     * Constructs a new UserInputParser with the user response.
      *
      * @param response Input by user.
      */
-    public Parser(String response) {
+    public UserInputParser(String response) {
         this.response = response;
-    }
-
-    /**
-     * Splits the response to obtain the part containing the first word in the user input.
-     *
-     * @return The first word in input.
-     */
-    public String getCommandFirstWord() {
-        String[] parts = response.split(" ", 2);
-        return parts[0].trim();
     }
 
     /**
@@ -71,7 +61,7 @@ public class Parser {
     /**
      * Returns the deadline chore deadline date/time by extracting the necessary parts.
      */
-    public LocalDateTime getDate() throws DateTimeParseException {
+    public LocalDateTime getDeadlineDate() throws DateTimeParseException {
         String date = this.getDeadlineDetails()[1].trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HHmm");
         return LocalDateTime.parse(date, formatter);
@@ -133,7 +123,7 @@ public class Parser {
      *
      * @return A String array containing the command and the date.
      */
-    public String[] splitFilter() {
+    public String[] splitFilterCommand() {
         String[] parts = response.split(" ", 2);
         return parts;
     }
@@ -144,7 +134,8 @@ public class Parser {
      * @return A String containing the date to be filtered by.
      */
     public String getFilterDateString() {
-        return this.splitFilter()[1].trim();
+        String filterDateString = this.splitFilterCommand()[1].trim();
+        return filterDateString;
     }
 
     /**
@@ -162,8 +153,26 @@ public class Parser {
      *
      * @return A String containing the keyword.
      */
-    public String getKeyword() {
+    public String getFindKeyword() {
         String[] parts = response.split(" ", 2);
         return parts[1];
+    }
+
+    /**
+     * Splits the response by the space for the user inputs.
+     *
+     * @return A String containing the split parts of the user input.
+     */
+    public String[] splitCommand() {
+        String[] splitResponse = response.split("\\s+");
+        return splitResponse;
+    }
+
+    /**
+     * Returns the first word of the user input.
+     */
+    public String getCommand() {
+        String command = this.splitCommand()[0].trim(); // take first word
+        return command;
     }
 }

@@ -35,7 +35,7 @@ public class Checklist {
     public void addChore(Chore chore) {
         chores.add(chore);
         System.out.println(chore.toString() + " added to Checklist!");
-        this.printCount();
+        this.printChoreCount();
     }
 
     /**
@@ -49,13 +49,13 @@ public class Checklist {
         Chore chore = chores.get(index);
         chores.remove(index);
         System.out.println("Got it, this chore is removed: \n" + chore.toString());
-        this.printCount();
+        this.printChoreCount();
     }
 
     /**
      * Prints the number of chores in the checklist.
      */
-    public void printCount() {
+    public void printChoreCount() {
         int choreCount = chores.size();
         System.out.println("You now have " + choreCount + " chore(s) in the checklist.\n");
     }
@@ -69,7 +69,7 @@ public class Checklist {
             System.out.printf("%d %s%n", j, c.toString());
             j++;
         }
-        this.printCount();
+        this.printChoreCount();
     }
 
     /**
@@ -152,7 +152,7 @@ public class Checklist {
         } else {
             chores.clear();
             System.out.println("All chores removed successfully from the Checklist!");
-            this.printCount();
+            this.printChoreCount();
         }
     }
 }

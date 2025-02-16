@@ -45,7 +45,6 @@ public class Universe {
      */
     public void run() {
         ui.greet();
-
         boolean isRunComplete = false; // a "toggle switch" to keep track of whether the session has ended
         while (!isRunComplete) {
             try {
@@ -61,10 +60,7 @@ public class Universe {
                     ResponseManager manager = new ResponseManager(chores, response);
                     manager.execute();
                 }
-
-                // save the chores to the file after each command
                 storage.saveChores();
-
             } catch (FileNotFoundException e) {
                 System.out.println("Sorry, your Checklist file cannot be found!\n");
             } catch (UniverseException e) {
@@ -84,8 +80,7 @@ public class Universe {
      * @return A String response to be shown in the GUI.
      */
     public String getResponse(String input) {
-        // save original system out
-        PrintStream originalOut = System.out;
+        PrintStream originalOut = System.out; // save original system out
 
         // capture output
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -98,8 +93,6 @@ public class Universe {
 
             ResponseManager manager = new ResponseManager(chores, input);
             manager.execute();
-
-            // save the chores to the corresponding file after each command
             storage.saveChores();
         } catch (FileNotFoundException e) {
             return "Sorry, your Checklist file cannot be found!\n";
@@ -113,8 +106,7 @@ public class Universe {
         } catch (Exception e) {
             return e.getMessage();
         } finally {
-            // restore the original system out
-            System.setOut(originalOut);
+            System.setOut(originalOut); // restore the original system out
         }
         return outputStream.toString();
     }

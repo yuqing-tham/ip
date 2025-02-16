@@ -10,6 +10,7 @@ import universe.exceptions.MissingKeywordException;
 import universe.exceptions.MissingListItemException;
 import universe.exceptions.MissingStartAndEndException;
 import universe.exceptions.MissingTimeException;
+import universe.exceptions.UniverseException;
 
 /**
  * Responsible for checking if a user input contains all the necessary details.
@@ -26,71 +27,69 @@ public class ResponseChecker {
      * @param response A String response by the user.
      * @param chores The Checklist containing all the existing Chores.
      */
-    public ResponseChecker(String response, Checklist chores) {
+    public ResponseChecker(String response, Checklist chores) throws EmptyResponseException {
         this.response = response;
         this.chores = chores;
+        if (response.isEmpty()) {
+            throw new EmptyResponseException();
+        }
     }
 
     /**
-     * Checks the user input and throws the corresponding exception.
+     * Checks the user input and calls the corresponding function to check respond specific details.
      */
-    public void handleError() throws EmptyResponseException, MissingDescriptionException, MissingTimeException,
-            MissingStartAndEndException, MissingIndexException, InvalidResponseException, MissingListItemException,
-            MissingFilterDateException, MissingKeywordException {
-        if (response.isEmpty()) {
-            throw new EmptyResponseException();
+    public void handleError() throws UniverseException {
+        UserInputParser parser = new UserInputParser(response);
+        String[] parts = parser.splitCommand();
+        String command = parser.getCommand();
+
+        switch (command) {
+        case "todo", "deadline", "event" -> handleAddChoreError(parts, command);
+        case "check", "uncheck", "remove" -> handleMarkDoneAndRemoveError(parts);
+        case "filter", "find" -> handleFilterAndFindError(parts, command);
+        case "list", "clear", "hi", "help" -> { }
+        default -> throw new InvalidResponseException();
+        }
+    }
+
+    /**
+     * Checks the add Chore commands and throw the corresponding exceptions.
+     */
+    public void handleAddChoreError(String[] parts, String command) throws UniverseException {
+        if (parts.length < 2) {
+            throw new MissingDescriptionException();
+        } else if (command.equals("deadline") && !(response.contains("by"))) {
+            throw new MissingTimeException();
+        } else if (command.equals("event")) {
+            if (!(response.contains("from")) || !(response.contains("to"))) {
+                throw new MissingStartAndEndException();
+            }
+        }
+    }
+
+    /**
+     * Checks the check, uncheck and remove Chore commands and throw the corresponding exceptions.
+     */
+    public void handleMarkDoneAndRemoveError(String[] parts) throws UniverseException {
+        if (parts.length < 2) {
+            throw new MissingIndexException();
         } else {
-            String[] r = response.split("\\s+"); // split response by spaces
-            String command = r[0].trim(); // take first word
+            int choreIndex = Integer.parseInt(parts[1]);
+            if (choreIndex > chores.getSize()) {
+                throw new MissingListItemException();
+            }
+        }
+    }
 
-            switch (command) {
-            case "todo":
-            case "deadline":
-            case "event":
-                if (r.length < 2) {
-                    throw new MissingDescriptionException();
-                } else if (command.equals("deadline") && !(response.contains("by"))) {
-                    throw new MissingTimeException();
-                } else if (command.equals("event")) {
-                    if (!(response.contains("from")) || !(response.contains("to"))) {
-                        throw new MissingStartAndEndException();
-                    }
-                }
-                break;
-
-            case "check":
-            case "uncheck":
-            case "remove":
-                if (r.length < 2) {
-                    throw new MissingIndexException();
-                } else {
-                    int choreIndex = Integer.parseInt(r[1]);
-                    if (choreIndex > chores.getSize()) {
-                        throw new MissingListItemException();
-                    }
-                }
-                break;
-
-            case "list":
-            case "clear":
-            case "hi":
-            case "help":
-                break;
-
-            case "filter":
-                if (r.length < 2) {
-                    throw new MissingFilterDateException();
-                }
-                break;
-
-            case "find":
-                if (r.length < 2) {
-                    throw new MissingKeywordException();
-                }
-                break;
-
-            default:
-                throw new InvalidResponseException();
+    /**
+     * Checks the filter and find commands and throw the corresponding exceptions.
+     */
+    public void handleFilterAndFindError(String[] parts, String command) throws UniverseException {
+        if (parts.length < 2) {
+            if (command.equals("filter")) {
+                throw new MissingFilterDateException();
+            } else {
+                throw new MissingKeywordException();
             }
         }
     }

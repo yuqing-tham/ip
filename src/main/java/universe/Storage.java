@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,6 +12,7 @@ import universe.chores.Deadline;
 import universe.chores.Event;
 import universe.chores.ToDo;
 import universe.exceptions.IncorrectFormatException;
+import universe.response.FileParser;
 
 /**
  * Responsible for reading and writing to an existing checklist file.
@@ -50,62 +49,44 @@ public class Storage {
             f.createNewFile();
         }
 
-        Scanner s = new Scanner(f);
+        Scanner scanner = new Scanner(f);
+        this.createChoresList(scanner);
+        scanner.close();
+    }
 
-        while (s.hasNext()) {
-            String command = s.nextLine();
+    /**
+     * Creates a Checklist to store all the information read from the file.
+     */
+    public void createChoresList(Scanner scanner) throws IncorrectFormatException {
+        while (scanner.hasNext()) {
+            String choreInFile = scanner.nextLine();
+            FileParser fileParser = new FileParser(choreInFile);
+            String choreType = fileParser.getChoreType();
+            String isDone = fileParser.getStatus();
+            String description = fileParser.getChoreDescription();
 
-            // split the command into relevant parts
-            String[] parts = command.split(" \\| ", 4);
-            String choreType = parts[0].trim();
-            String isDone = parts[1].trim();
-            String description = parts[2].trim();
-
-            // create new chores and add to checklist based on chore type
-            Chore chore = null;
+            Chore chore;
             switch (choreType) {
             case "T":
                 chore = new ToDo(description);
                 break;
             case "D":
-                String deadlineDate = parts[3].trim();
-                try {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy HH:mm");
-                    LocalDateTime formattedDate = LocalDateTime.parse(deadlineDate, formatter);
-                    chore = new Deadline(description, formattedDate);
-                } catch (DateTimeParseException e) {
-                    System.out.println("Something seems to be wrong with the date/time formats "
-                            + "in the provided Checklist.\n");
-                }
+                LocalDateTime deadlineDate = fileParser.getDeadlineDateTime();
+                chore = new Deadline(description, deadlineDate);
                 break;
             case "E":
-                String[] temp = parts[3].split("to");
-                String startDateTime = temp[0].trim();
-                String endDateTime = temp[1].trim();
-                try {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy HH:mm");
-                    LocalDateTime formattedStart = LocalDateTime.parse(startDateTime, formatter);
-                    LocalDateTime formattedEnd = LocalDateTime.parse(endDateTime, formatter);
-                    chore = new Event(description, formattedStart, formattedEnd);
-                } catch (DateTimeParseException e) {
-                    System.out.println("Something seems to be wrong with the date/time formats "
-                            + "in the provided Checklist.\n");
-                }
+                LocalDateTime startDateTime = fileParser.getEventStartDateTime();
+                LocalDateTime endDateTime = fileParser.getEventEndDateTime();
+                chore = new Event(description, startDateTime, endDateTime);
                 break;
             default:
                 throw new IncorrectFormatException();
             }
-
-            // mark the chore as done if isDone is true (indicated as 1)
             if (isDone.equals("1")) {
-                assert chore != null;
-                chore.markAsDone();
+                chore.markAsDone(); // mark the chore as done if isDone is true (indicated as 1)
             }
-
-            // add the chore to the checklist
             Checklist.getChores().add(chore);
         }
-        s.close();
     }
 
     /**

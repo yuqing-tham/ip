@@ -30,86 +30,98 @@ public class ResponseManager {
     }
 
     /**
-     * Asks a Parser instance to help split the response to meaningful parts,
+     * Asks a UserInputParser instance to help split the response to meaningful parts,
      * then executes the corresponding actions by calling functions in different classes.
      *
      * @throws InvalidResponseException If the user input is not recognised under the list of approved commands.
      */
     public void execute() throws InvalidResponseException {
-        Parser parser = new Parser(response);
-        String command = parser.getCommandFirstWord();
+        UserInputParser userInputParser = new UserInputParser(response);
+        String command = userInputParser.getCommand();
+
         switch (command) {
-        case "hi":
-            System.out.println("Greetings Universe traveller! Type 'help' if you need the commands list.");
-            break;
-
-        case "help":
-            CommandsList commands = new CommandsList();
-            commands.printCommands();
-            break;
-
-        case "list":
-            System.out.println("Cosmic Chore Checklist:");
-            chores.printChecklist();
-            break;
-
-        case "check":
-            int choreNumberCheck = parser.getChoreNumber();
-            chores.checkAsDone(choreNumberCheck);
-            break;
-
-        case "uncheck":
-            int choreNumberUncheck = parser.getChoreNumber();
-            chores.uncheckAsDone(choreNumberUncheck);
-            break;
-
-        case "todo":
-            String todoDescription = parser.getDescription();
-            ToDo todo = new ToDo(todoDescription);
-            chores.addChore(todo);
-            break;
-
-        case "deadline":
-            String deadlineDescription = parser.getDeadlineDescription();
-            LocalDateTime deadlineDateTime = parser.getDate();
-            Deadline deadline = new Deadline(deadlineDescription, deadlineDateTime);
-            chores.addChore(deadline);
-            break;
-
-        case "event":
-            String eventDescription = parser.getEventDescription();
-            LocalDateTime startDateTime = parser.getStartTime();
-            LocalDateTime endDateTime = parser.getEndTime();
-            try {
-                Event event = new Event(eventDescription, startDateTime, endDateTime);
-                chores.addChore(event);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage() + "\n");
-            }
-            break;
-
-        case "remove":
-            int choreNumber = parser.getChoreNumber();
-            chores.removeChore(choreNumber);
-            break;
-
-        case "filter":
-            String dateString = parser.getFilterDateString();
-            LocalDateTime filterDate = parser.getFilterDate();
-            chores.filterByDate(dateString, filterDate);
-            break;
-
-        case "find":
-            String keyword = parser.getKeyword();
-            chores.findByKeyword(keyword);
-            break;
-
-        case "clear":
-            chores.clearAllChores();
-            break;
-
-        default:
-            throw new InvalidResponseException();
+        case "hi" -> handleHi();
+        case "help" -> handleHelp();
+        case "list" -> handleList();
+        case "check" -> handleCheck(userInputParser);
+        case "uncheck" -> handleUncheck(userInputParser);
+        case "todo" -> handleToDo(userInputParser);
+        case "deadline" -> handleDeadline(userInputParser);
+        case "event" -> handleEvent(userInputParser);
+        case "remove" -> handleRemove(userInputParser);
+        case "filter" -> handleFilter(userInputParser);
+        case "find" -> handleFind(userInputParser);
+        case "clear" -> handleClear();
+        default -> throw new InvalidResponseException();
         }
+    }
+
+    public void handleHi() {
+        System.out.println("Greetings Universe traveller! Type 'help' if you need the commands list.");
+    }
+
+    public void handleHelp() {
+        CommandsList commands = new CommandsList();
+        commands.printCommands();
+    }
+
+    public void handleList() {
+        System.out.println("Cosmic Chore Checklist:");
+        chores.printChecklist();
+    }
+
+    public void handleCheck(UserInputParser userInputParser) {
+        int choreNumberCheck = userInputParser.getChoreNumber();
+        chores.checkAsDone(choreNumberCheck);
+    }
+
+    public void handleUncheck(UserInputParser userInputParser) {
+        int choreNumberUncheck = userInputParser.getChoreNumber();
+        chores.uncheckAsDone(choreNumberUncheck);
+    }
+
+    public void handleToDo(UserInputParser userInputParser) {
+        String todoDescription = userInputParser.getDescription();
+        ToDo todo = new ToDo(todoDescription);
+        chores.addChore(todo);
+    }
+
+    public void handleDeadline(UserInputParser userInputParser) {
+        String deadlineDescription = userInputParser.getDeadlineDescription();
+        LocalDateTime deadlineDateTime = userInputParser.getDeadlineDate();
+        Deadline deadline = new Deadline(deadlineDescription, deadlineDateTime);
+        chores.addChore(deadline);
+    }
+
+    public void handleEvent(UserInputParser userInputParser) {
+        String eventDescription = userInputParser.getEventDescription();
+        LocalDateTime startDateTime = userInputParser.getStartTime();
+        LocalDateTime endDateTime = userInputParser.getEndTime();
+        try {
+            Event event = new Event(eventDescription, startDateTime, endDateTime);
+            chores.addChore(event);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + "\n");
+        }
+    }
+
+    public void handleRemove(UserInputParser userInputParser) {
+        int choreNumber = userInputParser.getChoreNumber();
+        chores.removeChore(choreNumber);
+    }
+
+    public void handleFilter(UserInputParser userInputParser) {
+        String dateString = userInputParser.getFilterDateString();
+        LocalDateTime filterDate = userInputParser.getFilterDate();
+        chores.filterByDate(dateString, filterDate);
+    }
+
+    public void handleFind(UserInputParser userInputParser) {
+        String keyword = userInputParser.getFindKeyword();
+        chores.findByKeyword(keyword);
+    }
+
+    public void handleClear() {
+        chores.clearAllChores();
     }
 }
