@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
  * @author yuqing-tham
  */
 public class Deadline extends Chore {
-    private LocalDateTime deadlineDateTime;
+    private final LocalDateTime deadlineDateTime;
 
     /**
      * Constructs a new Deadline chore with a specified description and a deadline which includes a date and a time.
@@ -36,7 +36,6 @@ public class Deadline extends Chore {
 
     /**
      * Returns true as Deadline is a chore type with a date and time.
-     *
      */
     @Override
     public boolean isChoreWithTime() {

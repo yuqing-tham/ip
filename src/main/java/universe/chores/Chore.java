@@ -15,12 +15,11 @@ import java.time.LocalDateTime;
  * @author yuqing-tham
  */
 public abstract class Chore {
-    private String choreDescription;
+    private final String choreDescription;
     private boolean isDone;
 
     /**
-     * Constructs a new Chore with a specified description,
-     * and sets the state isDone to the default false.
+     * Constructs a new Chore with a specified description, and sets the state isDone to the default false.
      *
      * @param choreDescription A String description of the chore.
      */
@@ -31,7 +30,6 @@ public abstract class Chore {
 
     /**
      * Returns the private field choreDescription.
-     *
      */
     public String getChoreDescription() {
         return choreDescription;

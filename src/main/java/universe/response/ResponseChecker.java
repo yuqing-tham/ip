@@ -18,8 +18,8 @@ import universe.exceptions.UniverseException;
  * @author yuqing-tham
  */
 public class ResponseChecker {
-    private String response;
-    private Checklist chores;
+    private final String response;
+    private final Checklist chores;
 
     /**
      * Constructs a ResponseChecker with the specified user response and chores list.
@@ -53,7 +53,7 @@ public class ResponseChecker {
     }
 
     /**
-     * Checks the add Chore commands and throw the corresponding exceptions.
+     * Checks the add Chore commands and throws the corresponding exceptions.
      */
     public void handleAddChoreError(String[] parts, String command) throws UniverseException {
         if (parts.length < 2) {
@@ -68,7 +68,7 @@ public class ResponseChecker {
     }
 
     /**
-     * Checks the check, uncheck and remove Chore commands and throw the corresponding exceptions.
+     * Checks the check, uncheck and remove Chore commands and throws the corresponding exceptions.
      */
     public void handleMarkDoneAndRemoveError(String[] parts) throws UniverseException {
         if (parts.length < 2) {
@@ -82,7 +82,7 @@ public class ResponseChecker {
     }
 
     /**
-     * Checks the filter and find commands and throw the corresponding exceptions.
+     * Checks the filter and find commands and throws the corresponding exceptions.
      */
     public void handleFilterAndFindError(String[] parts, String command) throws UniverseException {
         if (parts.length < 2) {

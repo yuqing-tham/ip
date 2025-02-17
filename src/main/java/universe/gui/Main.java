@@ -29,7 +29,6 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinHeight(220);
             stage.setMinWidth(417);
-            // stage.setMaxWidth(417);
             stage.setTitle("Universe");
             stage.getIcons().add(new Image("/images/Universe.png"));
             fxmlLoader.<MainWindow>getController().setUniverse(universe);

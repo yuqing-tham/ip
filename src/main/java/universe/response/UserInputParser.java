@@ -18,7 +18,7 @@ import java.time.format.DateTimeParseException;
  * @author yuqing-tham
  */
 public class UserInputParser {
-    private String response;
+    private final String response;
 
     /**
      * Constructs a new UserInputParser with the user response.

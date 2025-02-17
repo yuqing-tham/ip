@@ -21,7 +21,7 @@ import universe.response.FileParser;
  * @author yuqing-tham
  */
 public class Storage {
-    private String filepath;
+    private final String filepath;
 
     /**
      * Constructs a new Storage with a specified filepath.

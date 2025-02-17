@@ -15,8 +15,8 @@ import universe.exceptions.InvalidResponseException;
  * @author yuqing-tham
  */
 public class ResponseManager {
-    private Checklist chores;
-    private String response;
+    private final Checklist chores;
+    private final String response;
 
     /**
      * Constructs a new ResponseManager to execute commands based on user input.

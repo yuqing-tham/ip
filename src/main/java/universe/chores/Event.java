@@ -10,8 +10,8 @@ import java.time.format.DateTimeParseException;
  * @author yuqing-tham
  */
 public class Event extends Chore {
-    private LocalDateTime startDateTime;
-    private LocalDateTime endDateTime;
+    private final LocalDateTime startDateTime;
+    private final LocalDateTime endDateTime;
 
     /**
      * Constructs a new Event chore with a specified description, a start date/time and end date/time.
@@ -42,7 +42,6 @@ public class Event extends Chore {
 
     /**
      * Returns true as Event is a chore type with a date and time.
-     *
      */
     @Override
     public boolean isChoreWithTime() {

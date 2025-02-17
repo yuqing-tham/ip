@@ -18,8 +18,8 @@ import java.time.format.DateTimeParseException;
  * @author yuqing-tham
  */
 public class FileParser {
-    private String choreInFile;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy HH:mm");
+    private final String choreInFile;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy HH:mm");
 
     /**
      * Constructs a new FileParser with the line containing the chore information.
@@ -110,8 +110,8 @@ public class FileParser {
     public LocalDateTime getEventEndDateTime() {
         String endDateTime = this.splitEventTime()[1].trim();
         try {
-            LocalDateTime formattedStart = LocalDateTime.parse(endDateTime, formatter);
-            return formattedStart;
+            LocalDateTime formattedEnd = LocalDateTime.parse(endDateTime, formatter);
+            return formattedEnd;
         } catch (DateTimeParseException e) {
             System.out.println("Something seems to be wrong with the date/time formats "
                                + "in the provided Checklist.\n");
