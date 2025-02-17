@@ -90,7 +90,7 @@ ________________________________________________________________________________
 
 ## Download instructions
 Follow the steps below to run Universe:
-1. Download it [here](https://github.com/yuqing-tham/ip/releases/tag/A-Jar)
+1. Download it [here](https://github.com/yuqing-tham/ip/releases/tag/A-Release)
 2. Once the JAR file is downloaded, please `cd` to the correct folder where the file is located.
 3. Run the following command `java -jar Universe.jar`.
 4. You're all set to interact with Universe! 
