@@ -47,7 +47,7 @@ public class ResponseChecker {
         case "todo", "deadline", "event" -> handleAddChoreError(parts, command);
         case "check", "uncheck", "remove" -> handleMarkDoneAndRemoveError(parts);
         case "filter", "find" -> handleFilterAndFindError(parts, command);
-        case "list", "clear", "hi", "help" -> { }
+        case "list", "clear", "hi", "help", "bye" -> { }
         default -> throw new InvalidResponseException();
         }
     }

@@ -2,8 +2,10 @@ package universe.response;
 
 import java.time.LocalDateTime;
 
+import javafx.application.Platform;
 import universe.Checklist;
 import universe.CommandsList;
+import universe.Ui;
 import universe.chores.Deadline;
 import universe.chores.Event;
 import universe.chores.ToDo;
@@ -52,6 +54,7 @@ public class ResponseManager {
         case "filter" -> handleFilter(userInputParser);
         case "find" -> handleFind(userInputParser);
         case "clear" -> handleClear();
+        case "bye" -> handleBye();
         default -> throw new InvalidResponseException();
         }
     }
@@ -159,5 +162,14 @@ public class ResponseManager {
      */
     public void handleClear() {
         chores.clearAllChores();
+    }
+
+    /**
+     * Terminates the session and closes the GUI.
+     */
+    public void handleBye() {
+        Ui ui = new Ui();
+        ui.bye();
+        Platform.exit();
     }
 }

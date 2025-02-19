@@ -48,7 +48,6 @@ public class Universe {
         boolean isRunComplete = false; // a "toggle switch" to keep track of whether the session has ended
         while (!isRunComplete) {
             try {
-                // checks if response is a valid response with the correct details required
                 String response = ui.getResponse();
                 ResponseChecker c = new ResponseChecker(response, chores);
                 c.handleError();
