@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 /**
- * Unit test class for {@link ToDo}.
+ * Unit test class for ToDo.
  * This class tests the string representation and file format conversion of an Event object.
  */
 public class ToDoTest {

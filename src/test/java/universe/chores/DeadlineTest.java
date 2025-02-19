@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.Test;
 
 /**
- * Unit test class for {@link Deadline}.
+ * Unit test class for Deadline.}
  * This class tests the string representation and file format conversion of a Deadline object.
  */
 public class DeadlineTest {

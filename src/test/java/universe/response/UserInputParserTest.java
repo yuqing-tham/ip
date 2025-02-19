@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 /**
- * Unit test class for {@link UserInputParser}.
+ * Unit test class for UserInputParser.
  * This class verifies the correct parsing of different user inputs, such as todos, deadlines, events,
  * and other commands, ensuring the expected output is returned.
  */

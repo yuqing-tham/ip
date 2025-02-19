@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.Test;
 
 /**
- * Unit test class for {@link Event}.
+ * Unit test class for Event.
  * This class tests the string representation and file format conversion of an Event object.
  */
 public class EventTest {
