@@ -19,7 +19,7 @@ public class CommandsList {
             + "> To find all the Chores due or happening on the same date: filter (date in D MMM YYYY format)\n"
             + "> To find all the Chores with the same keyword in the description: find (keyword)\n"
             + "> To clear all Chores in the Checklist: clear\n"
-            + "> For fun: hi\n";
+            + "> For fun: hi";
 
     /**
      * Prints the list of approved commands.

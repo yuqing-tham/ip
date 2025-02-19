@@ -4,11 +4,16 @@
     -fx-border-width: 2px;
     -fx-background-radius: 1em 1em 0 1em;
     -fx-border-radius: 1em 1em 0 1em;
+    -fx-wrap-text: true;
 }
 
 .reply-label {
+    -fx-background-color: #E6B8B7;
+    -fx-border-color: #B76E79;
+    -fx-border-width: 2px;
     -fx-background-radius: 1em 1em 1em 0;
     -fx-border-radius: 1em 1em 1em 0;
+    -fx-wrap-text: true;
 }
 
 #displayPicture {

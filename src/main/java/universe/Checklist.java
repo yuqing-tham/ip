@@ -82,8 +82,6 @@ public class Checklist {
         assert index >= 0;
         Chore chore = chores.get(index);
         chore.markAsDone();
-        System.out.println("Yay " + chore.getChoreDescription() + " successfully completed!");
-        System.out.println(chore.toString() + "\n");
     }
 
     /**
@@ -96,8 +94,6 @@ public class Checklist {
         assert index >= 0;
         Chore chore = chores.get(index);
         chore.markAsNotDone();
-        System.out.println(chore.getChoreDescription() + " marked as not done yet :(");
-        System.out.println(chore.toString() + "\n");
     }
 
     /**

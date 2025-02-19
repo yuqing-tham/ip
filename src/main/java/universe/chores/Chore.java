@@ -56,14 +56,26 @@ public abstract class Chore {
      * Marks the Chore as Done by changing its isDone state to true from the default false.
      */
     public void markAsDone() {
-        isDone = true;
+        if (isDone) {
+            System.out.println("This Chore has already been completed originally!");
+        } else {
+            isDone = true;
+            System.out.println("Yay " + choreDescription + " successfully completed!");
+            System.out.println(this.toString() + "\n");
+        }
     }
 
     /**
      * Marks the Chore as Not Done by changing its isDone state to false.
      */
     public void markAsNotDone() {
-        isDone = false;
+        if (!isDone) {
+            System.out.println("This Chore has not been completed before. No need to uncheck again :))");
+        } else {
+            isDone = false;
+            System.out.println(choreDescription + " marked as not done yet :(");
+            System.out.println(this.toString() + "\n");
+        }
     }
 
     /**

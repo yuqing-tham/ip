@@ -75,7 +75,7 @@ public class ResponseChecker {
             throw new MissingIndexException();
         } else {
             int choreIndex = Integer.parseInt(parts[1]);
-            if (choreIndex > chores.getSize()) {
+            if (choreIndex < 1 || choreIndex > chores.getSize()) {
                 throw new MissingListItemException();
             }
         }

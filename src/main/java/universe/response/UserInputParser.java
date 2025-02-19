@@ -114,7 +114,6 @@ public class UserInputParser {
     public int getChoreNumber() {
         String[] parts = response.split(" ");
         int choreNumber = Integer.parseInt(parts[1]);
-        assert choreNumber > 0;
         return choreNumber;
     }
 

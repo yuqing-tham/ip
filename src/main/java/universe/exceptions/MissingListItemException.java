@@ -11,6 +11,6 @@ public class MissingListItemException extends UniverseException {
      * Constructs a new MissingListItemException with the specified detail message.
      */
     public MissingListItemException() {
-        super("This chore is not in the list :(");
+        super("This chore does not exist :(");
     }
 }
