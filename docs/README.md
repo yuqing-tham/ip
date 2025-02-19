@@ -103,6 +103,15 @@ Format: `hi`
 
 Expected output: `Greetings Universe traveller! Type 'help' if you need the commands list.`
 
+## Say Bye to Universe
+Universe will say goodbye and exit automatically once the user inputs the command "bye".
+
+Format: `bye`
+
+Expected output: `Farewell, Universe traveller. May our paths intersect again soon!`
+
+> Note that Universe exits immediately, so you might not be able to read the farewell message in time before it exits.
+
 _______________________________________________________________________________________________________
 
 ## Download instructions
