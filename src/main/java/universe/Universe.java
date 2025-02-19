@@ -100,9 +100,7 @@ public class Universe {
             return "Sorry, unable to save chores. Please try again.\n";
         } catch (DateTimeParseException e) {
             return "Sorry, something wrong with the date format. "
-                   + "Please key following 'D MMM YYYY HHmm' format.\n";
-        } catch (Exception e) {
-            return "Sorry, something wrong with your input. Please try again!\n";
+                    + "Please key following 'D MMM YYYY HHmm' format.\n";
         } finally {
             System.setOut(originalOut); // restore the original system out
         }
