@@ -2,7 +2,6 @@ package universe.response;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * Responsible for parsing the information in the file into meaningful components for chore management.
@@ -69,14 +68,8 @@ public class FileParser {
      */
     public LocalDateTime getDeadlineDateTime() {
         String deadlineDate = this.splitFileInformation()[3].trim();
-        try {
-            LocalDateTime formattedDate = LocalDateTime.parse(deadlineDate, formatter);
-            return formattedDate;
-        } catch (DateTimeParseException e) {
-            System.out.println("Something seems to be wrong with the date/time formats "
-                               + "in the provided Checklist.\n");
-        }
-        return null;
+        LocalDateTime formattedDate = LocalDateTime.parse(deadlineDate, formatter);
+        return formattedDate;
     }
 
     /**
@@ -94,14 +87,8 @@ public class FileParser {
      */
     public LocalDateTime getEventStartDateTime() {
         String startDateTime = this.splitEventTime()[0].trim();
-        try {
-            LocalDateTime formattedStart = LocalDateTime.parse(startDateTime, formatter);
-            return formattedStart;
-        } catch (DateTimeParseException e) {
-            System.out.println("Something seems to be wrong with the date/time formats "
-                               + "in the provided Checklist.\n");
-        }
-        return null;
+        LocalDateTime formattedStart = LocalDateTime.parse(startDateTime, formatter);
+        return formattedStart;
     }
 
     /**
@@ -109,13 +96,7 @@ public class FileParser {
      */
     public LocalDateTime getEventEndDateTime() {
         String endDateTime = this.splitEventTime()[1].trim();
-        try {
-            LocalDateTime formattedEnd = LocalDateTime.parse(endDateTime, formatter);
-            return formattedEnd;
-        } catch (DateTimeParseException e) {
-            System.out.println("Something seems to be wrong with the date/time formats "
-                               + "in the provided Checklist.\n");
-        }
-        return null;
+        LocalDateTime formattedEnd = LocalDateTime.parse(endDateTime, formatter);
+        return formattedEnd;
     }
 }

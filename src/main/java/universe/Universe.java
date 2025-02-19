@@ -37,6 +37,9 @@ public class Universe {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println("Sorry, unable to read provided checklist file.");
+        } catch (DateTimeParseException e) {
+            System.out.println("Something seems to be wrong with the date/time formats "
+                    + "in the provided Checklist.\n");
         }
     }
 
@@ -60,8 +63,6 @@ public class Universe {
                     manager.execute();
                 }
                 storage.saveChores();
-            } catch (FileNotFoundException e) {
-                System.out.println("Sorry, your Checklist file cannot be found!\n");
             } catch (UniverseException e) {
                 System.out.println(e.getMessage() + "\n");
             } catch (IOException e) {
@@ -93,8 +94,6 @@ public class Universe {
             ResponseManager manager = new ResponseManager(chores, input);
             manager.execute();
             storage.saveChores();
-        } catch (FileNotFoundException e) {
-            return "Sorry, your Checklist file cannot be found!\n";
         } catch (UniverseException e) {
             return e.getMessage() + "\n";
         } catch (IOException e) {
